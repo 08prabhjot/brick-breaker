@@ -22,3 +22,77 @@ body {
     overflow: hidden;
 }
 
+.startbtn {
+    height: 23%;
+    width: 100%;
+    position: absolute;
+    bottom: 27%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.modal {
+    display: flex;
+    position: fixed;
+    z-index: 2;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, .5);
+    transform: translate(-50%, -50%);
+}
+
+.title {
+    color: #88ff55;
+    font-size: 4rem;
+    text-align: center;
+}
+
+.titlediv {
+    width: 100%;
+    display: flex;
+    position: absolute;
+    top: 30%;
+    justify-content: center;
+}
+
+.startbtn {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.play-text, .game-text {
+    font-size: 4rem;
+}
+
+.play-text, .game-text {
+    color: #cfff00;
+    text-shadow: 0 0 20px #cfff00;
+}
+
+.play-text:hover, .game-text:hover {
+    font-size: 4.5rem;
+    color: #daff45
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border-radius: 20px;
+    width: 1000px;
+    height: 550px;
+    box-shadow: 0 0 50px #e17c2e;
+}
+
+.modal-c1 {
+    background-image: url("../img/bg.jpeg");
+    background-size: cover;
+    background-position: center;
+}
