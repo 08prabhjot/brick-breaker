@@ -139,7 +139,7 @@ body {
 }
 
 .broken {
-    display: none;
+    visibility: hidden;
 }
 
 .pad {

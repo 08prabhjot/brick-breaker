@@ -5,6 +5,7 @@ var pad = document.querySelector(".pad");
 var ball = document.querySelector(".ball");
 var bricks = document.querySelectorAll(".brick")
 var mainContainer = document.getElementById("gameBoard")
+var lives = document.getElementById('lives')
 
 
 // CONFIG VALUE
@@ -14,6 +15,7 @@ let ballLeft = 0
 let ballMoveDelay = 5;
 let padCollisionPoint = 0;
 let maxLives = 10;
+let startLives = 2;
 let ballsLife = maxLives;
 let timerId = 0;
 let totalScore = 0
@@ -28,21 +30,23 @@ startGameBtn.addEventListener('click', function() {
 })
 
 mainContainer.style.setProperty("--ball-top", pad.offsetTop - ball.offsetHeight)
+lives.textContent = startLives // SET DEFAULT LIVES
 
-mainContainer.addEventListener("mousemove", (event) => {
-    let padLeft = event.offsetX
-    if(padLeft < 0 || padLeft > event.target.offsetWidth - pad.offsetWidth) return
+mainContainer.addEventListener("mousemove", (event) => { //TRIGGER EVENT MOUSE MOVE FOR MOVE PAD
+    let padLeft = event.offsetX // Mouse position in the game area
+    if(padLeft < 0 || padLeft > event.target.offsetWidth - pad.offsetWidth) return //Stop moving the pad when the mouse is out of the control area
 
+    //Set the position of the pad by updating the value of the variable in CSS
     mainContainer.style.setProperty("--pad-left", padLeft.toString())
-    if (gameRunning === 0) {
+    if (gameRunning === 0) { // IF THE GAME DOESN'T RUN, THE BALL WILL MOVE BY THE PAD
         ballLeft = padLeft + pad.offsetWidth / 2 - ball.offsetWidth / 2
+        //Set the position of the ball by updating the value of the variable in CSS
         mainContainer.style.setProperty("--ball-left", ballLeft.toString())
     }
 })
 
-window.addEventListener('keydown', (event) => {
-    let padLeft = +mainContainer.style.getPropertyValue('--pad-left')
-
+window.addEventListener('keydown', (event) => { //TRIGGER EVENT KEY DOWN FOR MOVE PAD
+    let padLeft = parseInt(mainContainer.style.getPropertyValue('--pad-left')) // GET CSS VARIABLE AND PARSE TO INT
     if(event.key == "ArrowLeft") {
         padLeft -= movementPhysics
     }
@@ -57,12 +61,14 @@ window.addEventListener('keydown', (event) => {
 
     if (gameRunning === 0) {
         ballLeft = padLeft + pad.offsetWidth / 2 - ball.offsetWidth / 2
+        //Set the position of the ball by updating the value of the variable in CSS
         mainContainer.style.setProperty("--ball-left", ballLeft.toString())
     }
+    //Set the position of the pad by updating the value of the variable in CSS
     mainContainer.style.setProperty("--pad-left", padLeft.toString())
 })
 
-mainContainer.addEventListener("click", (event) => {
+mainContainer.addEventListener("click", (event) => { // START GAME WHEN CLICK ON GAME AREA
     if (gameRunning === 0) {
         gameRunning = 1;
         startGame();
@@ -137,9 +143,7 @@ const getCollisionBetween = (element1, element2) => {
     let bottom2 = top2 + element2.offsetHeight
 
     if (right1 > left2 && right1 < right2) {
-        //ltr collision
         if (bottom1 > top2 && bottom1 < bottom2) {
-            //ttb collision
             if (bottom1 - top2 > right1 - left2) {
                 console.log("left to right")
                 return "ltr"
@@ -149,7 +153,6 @@ const getCollisionBetween = (element1, element2) => {
             }
         }
         if (top1 < bottom2 && top1 > top2) {
-            //btt collision
 
             if (top1 - bottom2 > right1 - left2) {
                 console.log("left to right")
@@ -161,9 +164,7 @@ const getCollisionBetween = (element1, element2) => {
         }
     }
     if (left1 < right2 && left1 > left2) {
-        //rtl collision
         if (bottom1 > top2 && bottom1 < bottom2) {
-            //ttb collision
             if (bottom1 - top2 > right2 - left1) {
                 console.log("right to left")
                 return "rtl"
@@ -173,7 +174,6 @@ const getCollisionBetween = (element1, element2) => {
             }
         }
         if (top1 < bottom2 && top1 > top2) {
-            //btt collision
             if (top1 - bottom2 > right2 - left1) {
                 console.log("right to left")
                 return "rtl"
@@ -201,6 +201,17 @@ const checkWallCollision = () => {
         ballsDirection.top *= -1
     if (ballTop > mainContainer.offsetHeight - ball.offsetWidth - 1) {
         //BALL DROPED
+        lives.textContent = startLives - 1
+        clearInterval(timerId)
+        if(startLives) {
+            gameRunning = 0
+            ballTop = pad.offsetTop - ball.offsetHeight;
+            ballLeft = pad.offsetLeft + pad.offsetWidth / 2 - ball.offsetWidth / 2;
+            mainContainer.style.setProperty("--ball-left", ballLeft.toString())
+            mainContainer.style.setProperty("--ball-top", ballTop.toString())
+        } else {
+            console.log("Game Over")
+        }
     }
 }
 
