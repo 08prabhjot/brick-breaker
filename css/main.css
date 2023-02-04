@@ -30,11 +30,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
 }
 
 .modal {
-    display: flex;
+    display: none;
     position: fixed;
     z-index: 2;
     left: 50%;
@@ -46,6 +45,10 @@ body {
     background-color: rgba(0, 0, 0, .5);
     transform: translate(-50%, -50%);
 }
+
+/* .active {
+    display: flex;
+} */
 
 .title {
     color: #88ff55;
@@ -66,16 +69,17 @@ body {
     justify-content: space-evenly;
 }
 
-.play-text, .game-text {
+.play-text, .top-score-text {
     font-size: 4rem;
+    cursor: pointer;
 }
 
-.play-text, .game-text {
+.play-text, .top-score-text {
     color: #cfff00;
     text-shadow: 0 0 20px #cfff00;
 }
 
-.play-text:hover, .game-text:hover {
+.play-text:hover, .top-score-text:hover {
     font-size: 4.5rem;
     color: #daff45
 }
@@ -95,4 +99,16 @@ body {
     background-image: url("../img/bg.jpeg");
     background-size: cover;
     background-position: center;
+}
+
+
+/* GAME BOARD */
+#gameBoard {
+    background-color: white;
+    width: 1000px;
+    height: 600px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
