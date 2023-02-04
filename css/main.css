@@ -167,3 +167,13 @@ body {
     transform: translate(-50%,-100%);
     /* top: calc(var(--ball-top) * 1px); */
 }
+
+.statistic {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    color:white;
+    bottom: 0;
+    padding: 2rem
+}
