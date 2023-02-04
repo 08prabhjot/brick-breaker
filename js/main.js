@@ -92,6 +92,7 @@ const moveBall = () => {
 
 const checkCollision = () => {
     checkBrickCollision()
+    checkWallCollision()
     checkPadCollision()
 }
 
@@ -191,20 +192,28 @@ const onCollisionWithBrick = (ball, brick, collision) => {
     brick.classList.add('broken')
 }
 
+const checkWallCollision = () => {
+    if (ballLeft > mainContainer.offsetWidth - ball.offsetWidth - 1)
+        ballsDirection.left *= -1
+    if (ballLeft < 1)
+        ballsDirection.left *= -1
+    if (ballTop < 1)
+        ballsDirection.top *= -1
+    if (ballTop > mainContainer.offsetHeight - ball.offsetWidth - 1) {
+        //BALL DROPED
+    }
+}
+
 const checkPadCollision = () => {
     if (getCollisionBetween(ball, pad)) {
         padCollisionPoint = ball.offsetLeft + ball.offsetWidth / 2;
         if (padCollisionPoint < (pad.offsetLeft + pad.offsetWidth / 4)) {
-            ballsDirection.left = -Math.sqrt(14)
             ballsDirection.top = -2
         } else if (padCollisionPoint < (pad.offsetLeft + pad.offsetWidth / 2)) {
             ballsDirection.left = -2
-            ballsDirection.top = -Math.sqrt(14)
         } else if (padCollisionPoint >= (pad.offsetLeft + pad.offsetWidth / 2) && padCollisionPoint < (pad.offsetLeft + pad.offsetWidth / 4 * 3)) {
             ballsDirection.left = 2
-            ballsDirection.top = -Math.sqrt(14)
         } else {
-            ballsDirection.left = Math.sqrt(14)
             ballsDirection.top = -2
         }
         while (ballTop + ball.offsetHeight > pad.offsetTop)
