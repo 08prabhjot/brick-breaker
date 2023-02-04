@@ -104,11 +104,35 @@ body {
 
 /* GAME BOARD */
 #gameBoard {
-    background-color: white;
     width: 1000px;
     height: 600px;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+.bricks {
+    display: flex;
+    padding: 4rem;
+}
+
+.brick {
+    width: calc(100% / 8);
+    height: 30px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 20px #cfff00;
+    border: 1px solid #cfff00;
+    margin: 0 4px;
+}
+
+.brick-pink {
+    box-shadow: inset 0 0 20px #ef45de;
+    border: 1px solid #ef45de
+}
+
+.broken {
+    display: none;
 }
