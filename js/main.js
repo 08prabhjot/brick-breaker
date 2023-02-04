@@ -1,5 +1,5 @@
 var startModal = document.getElementById('startModal')
-var startGame = document.querySelector('.play-text')
+var startGameBtn = document.querySelector('.play-text')
 var topScore = document.querySelector('.top-score-text')
 var pad = document.querySelector(".pad");
 var ball = document.querySelector(".ball");
@@ -22,7 +22,7 @@ let ballsDirection = {
 }
 let movementPhysics = 40 // Movement speed of pad on keyboard controls
 
-startGame.addEventListener('click', function() {
+startGameBtn.addEventListener('click', function() {
     startModal.classList.remove('active')
 })
 
@@ -58,3 +58,30 @@ window.addEventListener('keydown', (event) => {
     }
     mainContainer.style.setProperty("--pad-left", padLeft.toString())
 })
+
+mainContainer.addEventListener("click", (event) => {
+    if (gameRunning === 0) {
+        gameRunning = 1;
+        startGame();
+    }
+})
+
+const startBallMove = () => {
+    ballTop = pad.offsetTop - ball.offsetHeight;
+    ballsDirection = {
+        left: 0,
+        top: -3
+    }
+}
+
+const startGame = () => {
+    startBallMove();
+    timerId = setInterval(moveBall, ballMoveDelay)
+}
+
+const moveBall = () => {
+    ballTop += ballsDirection.top;
+    ballLeft += ballsDirection.left;
+    mainContainer.style.setProperty("--ball-left", ballLeft.toString())
+    mainContainer.style.setProperty("--ball-top", ballTop.toString())
+}
