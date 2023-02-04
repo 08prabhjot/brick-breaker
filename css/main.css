@@ -6,7 +6,7 @@
 
 :root {
     --ball-left: 0;
-    --ball-top: -30;
+    --ball-top: 0;
     --pad-left: 0;
     --power-up-left: 0;
     --power-up-top: 0;
@@ -142,19 +142,13 @@ body {
     display: none;
 }
 
-.controls {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    padding-bottom: 4rem;
-}
-
 .pad {
     position: absolute;
     width: 150px;
     height: 10px;
     box-shadow: inset 0 0 20px #ffffff;
     border-radius: 1000px;
+    bottom: 4rem;
     left: calc(var(--pad-left) * 1px);
 }
 

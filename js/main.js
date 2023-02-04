@@ -6,6 +6,7 @@ var ball = document.querySelector(".ball");
 var bricks = document.querySelectorAll(".brick")
 var mainContainer = document.getElementById("gameBoard")
 
+
 // CONFIG VALUE
 let gameRunning = 0;
 let ballTop = 0
@@ -25,6 +26,8 @@ let movementPhysics = 40 // Movement speed of pad on keyboard controls
 startGameBtn.addEventListener('click', function() {
     startModal.classList.remove('active')
 })
+
+mainContainer.style.setProperty("--ball-top", pad.offsetTop - ball.offsetHeight)
 
 mainContainer.addEventListener("mousemove", (event) => {
     let padLeft = event.offsetX
@@ -84,4 +87,69 @@ const moveBall = () => {
     ballLeft += ballsDirection.left;
     mainContainer.style.setProperty("--ball-left", ballLeft.toString())
     mainContainer.style.setProperty("--ball-top", ballTop.toString())
+    checkCollision()
+}
+
+const checkCollision = () => {
+    checkBrickCollision()
+}
+
+let ignoreBrickCollision = false
+const checkBrickCollision = () => {
+    if (ignoreBrickCollision)
+        return
+    for (let brick of bricks) {
+    
+        if (ignoreBrickCollision)
+            return
+        if (brick.classList.contains("broken"))
+            continue
+
+        let collision = getCollisionBetween(ball, brick)
+
+        if (!collision)
+            continue
+
+        onCollisionWithBrick(ball, brick, collision);
+        ignoreBrickCollision = true
+        setTimeout(() => {
+            ignoreBrickCollision = false
+        }, ballMoveDelay * 2)
+
+        if (collision === "rtl" || collision === "ltr")
+            ballsDirection.left *= -1
+        if (collision === "ttb" || collision === "btt")
+            ballsDirection.top *= -1
+    }
+}
+
+const getCollisionBetween = (element1, element2) => {
+    let left1 = element1.offsetLeft
+    let left2 = element2.offsetLeft
+    let top1 = element1.offsetTop
+    let top2 = element2.offsetTop
+
+    let right1 = left1 + element1.offsetWidth
+    let right2 = left2 + element2.offsetWidth
+    let bottom1 = top1 + element1.offsetHeight
+    let bottom2 = top2 + element2.offsetHeight
+
+    if (right1 > left2 && right1 < right2) {
+        if (top1 < bottom2 && top1 > top2) {
+            if (top1 - bottom2 > right1 - left2) {
+                console.log("left to right")
+                return "ltr"
+            } else {
+                console.log("bot to top")
+                return "btt"
+            }
+        }
+    }
+    return false
+}
+
+const onCollisionWithBrick = (ball, brick, collision) => {
+    totalScore += 100
+    document.getElementById("score").innerText = totalScore.toString()
+    brick.classList.add('broken')
 }
