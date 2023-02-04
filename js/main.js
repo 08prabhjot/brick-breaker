@@ -92,6 +92,7 @@ const moveBall = () => {
 
 const checkCollision = () => {
     checkBrickCollision()
+    checkPadCollision()
 }
 
 let ignoreBrickCollision = false
@@ -135,12 +136,48 @@ const getCollisionBetween = (element1, element2) => {
     let bottom2 = top2 + element2.offsetHeight
 
     if (right1 > left2 && right1 < right2) {
+        //ltr collision
+        if (bottom1 > top2 && bottom1 < bottom2) {
+            //ttb collision
+            if (bottom1 - top2 > right1 - left2) {
+                console.log("left to right")
+                return "ltr"
+            } else {
+                console.log("top to bottom")
+                return "ttb"
+            }
+        }
         if (top1 < bottom2 && top1 > top2) {
+            //btt collision
+
             if (top1 - bottom2 > right1 - left2) {
                 console.log("left to right")
                 return "ltr"
             } else {
                 console.log("bot to top")
+                return "btt"
+            }
+        }
+    }
+    if (left1 < right2 && left1 > left2) {
+        //rtl collision
+        if (bottom1 > top2 && bottom1 < bottom2) {
+            //ttb collision
+            if (bottom1 - top2 > right2 - left1) {
+                console.log("right to left")
+                return "rtl"
+            } else {
+                console.log("top to bottom")
+                return "ttb"
+            }
+        }
+        if (top1 < bottom2 && top1 > top2) {
+            //btt collision
+            if (top1 - bottom2 > right2 - left1) {
+                console.log("right to left")
+                return "rtl"
+            } else {
+                console.log("bottom to top")
                 return "btt"
             }
         }
@@ -152,4 +189,25 @@ const onCollisionWithBrick = (ball, brick, collision) => {
     totalScore += 100
     document.getElementById("score").innerText = totalScore.toString()
     brick.classList.add('broken')
+}
+
+const checkPadCollision = () => {
+    if (getCollisionBetween(ball, pad)) {
+        padCollisionPoint = ball.offsetLeft + ball.offsetWidth / 2;
+        if (padCollisionPoint < (pad.offsetLeft + pad.offsetWidth / 4)) {
+            ballsDirection.left = -Math.sqrt(14)
+            ballsDirection.top = -2
+        } else if (padCollisionPoint < (pad.offsetLeft + pad.offsetWidth / 2)) {
+            ballsDirection.left = -2
+            ballsDirection.top = -Math.sqrt(14)
+        } else if (padCollisionPoint >= (pad.offsetLeft + pad.offsetWidth / 2) && padCollisionPoint < (pad.offsetLeft + pad.offsetWidth / 4 * 3)) {
+            ballsDirection.left = 2
+            ballsDirection.top = -Math.sqrt(14)
+        } else {
+            ballsDirection.left = Math.sqrt(14)
+            ballsDirection.top = -2
+        }
+        while (ballTop + ball.offsetHeight > pad.offsetTop)
+            ballTop--
+    }
 }
