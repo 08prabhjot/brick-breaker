@@ -1,3 +1,10 @@
+// Links of references
+//https://www.youtube.com/watch?v=PVXwmom3Q8s
+//https://www.youtube.com/watch?v=oy5QVxzOk6k
+// https://github.com/untitled-team-101/Bricks-Breaker - Refer only to the core parts of the game such as pad control,
+//ball movement, collision handling. After that, I will develop the game according to my own ideas
+
+
 var startModal = document.getElementById('startModal')
 var startGameBtn = document.querySelector('.play-text')
 var topScore = document.querySelector('.top-score-text')
@@ -32,6 +39,7 @@ startGameBtn.addEventListener('click', function() {
 mainContainer.style.setProperty("--ball-top", pad.offsetTop - ball.offsetHeight)
 lives.textContent = startLives // SET DEFAULT LIVES
 
+//https://www.youtube.com/watch?v=PVXwmom3Q8s  - See how move the pad
 mainContainer.addEventListener("mousemove", (event) => { //TRIGGER EVENT MOUSE MOVE FOR MOVE PAD
     let padLeft = event.offsetX // Mouse position in the game area
     if(padLeft < 0 || padLeft > event.target.offsetWidth - pad.offsetWidth) return //Stop moving the pad when the mouse is out of the control area
@@ -131,6 +139,7 @@ const checkBrickCollision = () => {
     }
 }
 
+// https://www.youtube.com/watch?v=oy5QVxzOk6k - See how handle collisions
 const getCollisionBetween = (element1, element2) => {
     let left1 = element1.offsetLeft
     let left2 = element2.offsetLeft
