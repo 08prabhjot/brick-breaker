@@ -13,6 +13,8 @@ var ball = document.querySelector(".ball");
 var bricks = document.querySelectorAll(".brick")
 var mainContainer = document.getElementById("gameBoard")
 var lives = document.getElementById('lives')
+var preBtn = document.querySelector('.control .btn-prev')
+var nextBtn = document.querySelector('.control .btn-next')
 
 
 // CONFIG VALUE
@@ -240,3 +242,21 @@ const checkPadCollision = () => {
             ballTop--
     }
 }
+
+function controlIntro(type) {
+    let currentSlide = document.querySelector('.intro .item.active')
+    let indexSlide = currentSlide.getAttribute('index')
+    let nextIndexSlide =  type == 'next' ? parseInt(indexSlide) + 1 : parseInt(indexSlide) - 1 //SET NEXT INDEX BY TYPE
+    let maxSlide = document.querySelectorAll('.intro .item').length //GET ALL SLIDE, PARSE IT TO ARRAY AND GET LENGTH
+
+    if(nextIndexSlide < 1 || nextIndexSlide > maxSlide) return // BREAK WHEN NEXT INDEX NOT IN RANGE SLIDES INDEX
+    
+    currentSlide.classList.remove('active') //HIDE CURRENT SLIDE
+    let nextSlide = document.querySelector(`.intro .item[index="${nextIndexSlide}"]`) //GET NEXT SLIDE HAVE INDEX = NEXT INDEX
+    nextSlide.classList.add('active') // SET ACTIVE NEXT SLIDE
+}
+
+preBtn.addEventListener('click', () => controlIntro('prev'))
+nextBtn.addEventListener('click', () => controlIntro('next'))
+
+

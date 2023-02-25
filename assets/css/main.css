@@ -198,7 +198,7 @@ body {
   padding: 1rem;
 }
 .intro .item {
-  border: 1px solid white;
+  border: 1px solid rgb(5, 114, 209);
   width: 800px;
   height: 400px;
   position: absolute;
@@ -207,6 +207,23 @@ body {
   transform: translate(-50%, -60%);
   padding: 1rem;
   border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 20px rgb(5, 114, 209);
+  display: none;
+}
+.intro .item * {
+  display: none;
+}
+.intro .item.active {
+  display: block;
+}
+.intro .item.active * {
+  display: block;
+}
+.intro .item .character {
+  position: absolute;
+  right: 5%;
+  bottom: 0;
 }
 .intro .control {
   display: flex;
@@ -227,7 +244,7 @@ body {
   width: 30px;
 }
 .intro .control button:hover {
-  box-shadow: 0 0 20px white;
+  box-shadow: 0 0 20px rgb(5, 114, 209);
   opacity: 1;
 }
 .intro .skip {
