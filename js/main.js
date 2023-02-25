@@ -250,7 +250,11 @@ function controlIntro(type) {
     let nextIndexSlide =  type == 'next' ? parseInt(indexSlide) + 1 : parseInt(indexSlide) - 1 //SET NEXT INDEX BY TYPE
     let maxSlide = document.querySelectorAll('.intro .item').length //GET ALL SLIDE, PARSE IT TO ARRAY AND GET LENGTH
 
-    if(nextIndexSlide < 1 || nextIndexSlide > maxSlide) return // BREAK WHEN NEXT INDEX NOT IN RANGE SLIDES INDEX
+    if(nextIndexSlide < 1) return // BREAK WHEN NEXT INDEX OUT RANGE SLIDES INDEX
+    if(nextIndexSlide > maxSlide) { // END INTRO WHEN AT LAST SLIDE
+        document.querySelector('.intro').classList.add('hide')
+        startModal.classList.add('active')
+    }
     
     currentSlide.classList.remove('active') //HIDE CURRENT SLIDE
     let nextSlide = document.querySelector(`.intro .item[index="${nextIndexSlide}"]`) //GET NEXT SLIDE HAVE INDEX = NEXT INDEX
