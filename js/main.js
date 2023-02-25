@@ -35,6 +35,7 @@ let ballsDirection = {
     top: 0
 }
 let movementPhysics = 40 // Movement speed of pad on keyboard controls
+let score = 0 //SCORE ONLY IN A LEVEL
 
 startGameBtn.addEventListener('click', function() {
     startModal.classList.remove('active')
@@ -208,9 +209,10 @@ const getCollisionBetween = (element1, element2) => {
 
 const onCollisionWithBrick = (ball, brick, collision) => {
     totalScore += 100
+    score += 100
     document.getElementById("score").innerText = totalScore.toString()
     brick.classList.add('broken')
-    checkWinning()
+    checkStatus('win')
 }
 
 const checkWallCollision = () => {
@@ -222,7 +224,8 @@ const checkWallCollision = () => {
         ballsDirection.top *= -1
     if (ballTop > mainContainer.offsetHeight - ball.offsetWidth - 1) {
         //BALL DROPED
-        lives.textContent = startLives - 1
+        startLives = startLives - 1
+        lives.textContent = startLives
         clearInterval(timerId)
         if(startLives) {
             gameRunning = 0
@@ -231,7 +234,8 @@ const checkWallCollision = () => {
             mainContainer.style.setProperty("--ball-left", ballLeft.toString())
             mainContainer.style.setProperty("--ball-top", ballTop.toString())
         } else {
-            console.log("Game Over")
+            //WHEN LOSE
+            checkStatus('lose')
         }
     }
 }
@@ -282,7 +286,20 @@ function checkWinning() {
     let brick = document.querySelector('.brick:not(.broken)')
     if(!brick) {
         notifyModal.classList.remove('hide')
+        notifyModal.querySelector('.score').textContent = score
+        notifyModal.querySelector('.total-score').textContent = totalScore
         clearInterval(timerId)
+    }
+}
+
+function checkStatus(type) {
+    if(type == 'win') checkWinning()
+    else {
+        notifyModal.classList.remove('hide')
+        notifyModal.querySelector('.modal-body').classList.add('lose')
+        notifyModal.querySelector('.title').textContent = "YOU LOSE"
+        notifyModal.querySelector('.score').textContent = score
+        notifyModal.querySelector('.total-score').textContent = totalScore
     }
 }
 
