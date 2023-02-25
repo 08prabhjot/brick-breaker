@@ -265,4 +265,82 @@ body {
 .intro .skip a:hover {
   text-decoration: underline;
 }
+
+.modal-notify {
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 99;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+.modal-notify .modal-body {
+  width: 400px;
+  border-radius: 10px;
+  background: radial-gradient(circle, rgb(255, 255, 255) 0%, rgb(210, 242, 242) 45%, rgb(185, 240, 240) 71%, rgb(0, 255, 250) 100%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+.modal-notify .modal-body h1 {
+  color: rgb(25, 160, 25);
+  font-size: 46px;
+  font-weight: bold;
+}
+.modal-notify .modal-body .rate {
+  padding: 1rem 0;
+}
+.modal-notify .modal-body .rate img {
+  margin: 0 1rem;
+}
+.modal-notify .modal-body .info {
+  font-size: 26px;
+  color: gray;
+  font-weight: bold;
+}
+.modal-notify .modal-body .control {
+  padding: 2rem 0 0 0;
+}
+.modal-notify .modal-body .control button {
+  border: 5px solid #74EFFE;
+  background-color: #0099E1;
+  border-radius: 100%;
+  padding: 10px;
+  margin: 0 0.5rem;
+  max-height: 60px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+.modal-notify .modal-body .control button img {
+  width: 30px;
+  height: 30px;
+}
+.modal-notify .modal-body .control button.next, .modal-notify .modal-body .control button.restart {
+  padding: 10px 1.5rem;
+  border-radius: 1000px;
+}
+.modal-notify .modal-body .control button:hover {
+  opacity: 1;
+}
+.modal-notify .modal-body .control button:hover img {
+  transform: scale(1.1);
+}
+.modal-notify .modal-body .control button.restart {
+  display: none;
+}
+.modal-notify .modal-body.lose h1 {
+  color: red;
+}
+.modal-notify .modal-body.lose .rate {
+  display: none;
+}
+.modal-notify .modal-body.lose .control button.next {
+  display: none;
+}
+.modal-notify .modal-body.lose .control button.restart {
+  display: inline;
+}
 /*# sourceMappingURL=main.css.map */
