@@ -15,6 +15,7 @@ var mainContainer = document.getElementById("gameBoard")
 var lives = document.getElementById('lives')
 var preBtn = document.querySelector('.control .btn-prev')
 var nextBtn = document.querySelector('.control .btn-next')
+var skipBtn = document.querySelector('.skip .btn-skip')
 
 
 // CONFIG VALUE
@@ -258,5 +259,10 @@ function controlIntro(type) {
 
 preBtn.addEventListener('click', () => controlIntro('prev'))
 nextBtn.addEventListener('click', () => controlIntro('next'))
+skipBtn.addEventListener('click', function(event) {
+    event.preventDefault()
+    document.querySelector('.intro').classList.add('hide')
+    startModal.classList.add('active')
+})
 
 

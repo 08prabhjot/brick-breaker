@@ -47,10 +47,10 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   transform: translate(-50%, -50%);
 }
+.modal.active {
+  display: flex;
+}
 
-/* .active {
-    display: flex;
-} */
 .title {
   color: #88ff55;
   font-size: 4rem;
@@ -196,6 +196,9 @@ body {
   border-radius: 10px;
   color: white;
   padding: 1rem;
+}
+.intro.hide {
+  display: none;
 }
 .intro .item {
   border: 1px solid rgb(5, 114, 209);
