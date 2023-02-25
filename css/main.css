@@ -171,5 +171,9 @@ body {
     justify-content: space-between;
     color:white;
     bottom: 0;
-    padding: 2rem
+    padding: 2rem;
+}
+
+.statistic img,span {
+    vertical-align: middle;
 }
