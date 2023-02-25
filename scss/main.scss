@@ -216,20 +216,37 @@ body {
         right: 1%;
 
         button {
-            border-color: transparent;
+            border-color: white;
             margin: 0 1rem;
-            background-color: white;
+            background-color: transparent;
             padding: 0 1.5rem;
             opacity: 0.7;
             transition: .4s;
             cursor: pointer;
             img {
-                width: 40px;
+                width: 30px;
             }
 
             &:hover {
                 box-shadow: 0 0 20px white;
                 opacity: 1;
+            }
+        }
+    }
+
+    .skip {
+        right: 2%;
+        position: absolute;
+        a {
+            color: white;
+            text-decoration: none;
+            img {
+                width: 16px;
+                vertical-align: middle;
+            }
+
+            &:hover {
+                text-decoration: underline;
             }
         }
     }

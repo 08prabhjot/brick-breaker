@@ -213,19 +213,34 @@ body {
   right: 1%;
 }
 .intro .control button {
-  border-color: transparent;
+  border-color: white;
   margin: 0 1rem;
-  background-color: white;
+  background-color: transparent;
   padding: 0 1.5rem;
   opacity: 0.7;
   transition: 0.4s;
   cursor: pointer;
 }
 .intro .control button img {
-  width: 40px;
+  width: 30px;
 }
 .intro .control button:hover {
   box-shadow: 0 0 20px white;
   opacity: 1;
+}
+.intro .skip {
+  right: 2%;
+  position: absolute;
+}
+.intro .skip a {
+  color: white;
+  text-decoration: none;
+}
+.intro .skip a img {
+  width: 16px;
+  vertical-align: middle;
+}
+.intro .skip a:hover {
+  text-decoration: underline;
 }
 /*# sourceMappingURL=main.css.map */
