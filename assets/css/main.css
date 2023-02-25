@@ -273,6 +273,9 @@ body {
   height: 100vh;
   position: relative;
 }
+.modal-notify.hide {
+  display: none;
+}
 .modal-notify .modal-body {
   width: 400px;
   border-radius: 10px;

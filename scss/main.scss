@@ -283,6 +283,10 @@ body {
     height: 100vh;
     position: relative;
 
+    &.hide {
+        display: none;
+    }
+
     .modal-body {
         width: 400px;
         border-radius: 10px;

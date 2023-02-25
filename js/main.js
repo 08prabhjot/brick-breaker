@@ -16,6 +16,7 @@ var lives = document.getElementById('lives')
 var preBtn = document.querySelector('.control .btn-prev')
 var nextBtn = document.querySelector('.control .btn-next')
 var skipBtn = document.querySelector('.skip .btn-skip')
+var notifyModal = document.querySelector('.modal-notify')
 
 
 // CONFIG VALUE
@@ -209,6 +210,7 @@ const onCollisionWithBrick = (ball, brick, collision) => {
     totalScore += 100
     document.getElementById("score").innerText = totalScore.toString()
     brick.classList.add('broken')
+    checkWinning()
 }
 
 const checkWallCollision = () => {
@@ -275,5 +277,13 @@ skipBtn.addEventListener('click', function(event) {
     document.querySelector('.intro').classList.add('hide')
     startModal.classList.add('active')
 })
+
+function checkWinning() {
+    let brick = document.querySelector('.brick:not(.broken)')
+    if(!brick) {
+        notifyModal.classList.remove('hide')
+        clearInterval(timerId)
+    }
+}
 
 
