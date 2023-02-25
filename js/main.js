@@ -37,9 +37,9 @@ let movementPhysics = 40 // Movement speed of pad on keyboard controls
 
 startGameBtn.addEventListener('click', function() {
     startModal.classList.remove('active')
+    mainContainer.classList.remove('hide')
+    mainContainer.style.setProperty("--ball-top", pad.offsetTop - ball.offsetHeight)
 })
-
-mainContainer.style.setProperty("--ball-top", pad.offsetTop - ball.offsetHeight)
 lives.textContent = startLives // SET DEFAULT LIVES
 
 //https://www.youtube.com/watch?v=PVXwmom3Q8s  - See how move the pad
@@ -63,6 +63,13 @@ window.addEventListener('keydown', (event) => { //TRIGGER EVENT KEY DOWN FOR MOV
     }
     if(event.key == "ArrowRight") {
         padLeft += movementPhysics
+    }
+
+    if(event.key == 'ArrowUp') {
+        if (gameRunning === 0) {
+            gameRunning = 1;
+            startGame();
+        }
     }
 
     if (padLeft < 0)
