@@ -1,7 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Tourney:wght@400;700&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Tourney", cursive;
 }
 
 :root {
@@ -17,7 +19,7 @@ body {
   align-content: center;
   align-items: center;
   justify-content: center;
-  background-image: url("../../img/bg.gif");
+  background-image: url("../../img/background.jpg");
   background-size: cover;
   overflow: hidden;
 }
