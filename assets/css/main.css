@@ -195,4 +195,37 @@ body {
   color: white;
   padding: 1rem;
 }
+.intro .item {
+  border: 1px solid white;
+  width: 800px;
+  height: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  padding: 1rem;
+  border-radius: 10px;
+}
+.intro .control {
+  display: flex;
+  position: absolute;
+  bottom: 5%;
+  right: 1%;
+}
+.intro .control button {
+  border-color: transparent;
+  margin: 0 1rem;
+  background-color: white;
+  padding: 0 1.5rem;
+  opacity: 0.7;
+  transition: 0.4s;
+  cursor: pointer;
+}
+.intro .control button img {
+  width: 40px;
+}
+.intro .control button:hover {
+  box-shadow: 0 0 20px white;
+  opacity: 1;
+}
 /*# sourceMappingURL=main.css.map */
