@@ -17,6 +17,7 @@ var preBtn = document.querySelector('.control .btn-prev')
 var nextBtn = document.querySelector('.control .btn-next')
 var skipBtn = document.querySelector('.skip .btn-skip')
 var notifyModal = document.querySelector('.modal-notify')
+var btnRestartLevel = notifyModal.querySelector('.again') 
 
 
 // CONFIG VALUE
@@ -301,6 +302,22 @@ function checkStatus(type) {
         notifyModal.querySelector('.score').textContent = score
         notifyModal.querySelector('.total-score').textContent = totalScore
     }
+    gameRunning = 0
 }
+
+function restartLevel(level = 1) { //DEFAULT RESTART TO FIRST LEVEL
+    score = 0
+    totalScore = 0
+    startLives = 2
+    notifyModal.classList.add('hide')
+    for (let brick of bricks) {
+        brick.classList.remove('broken')
+    }
+    mainContainer.style.setProperty("--ball-top", pad.offsetTop - ball.offsetHeight)
+}
+
+btnRestartLevel.addEventListener('click', function() {
+    restartLevel()
+})
 
 
