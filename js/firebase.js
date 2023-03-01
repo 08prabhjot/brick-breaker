@@ -38,6 +38,7 @@ export async function storeScore(username, score) {
 export async function getScore() {
     var listScore = document.querySelector('.list-score')
     querySnapshot.forEach((doc) => { //THROUGH EACH RECORD
+        //APPEND A HTML STRING TO LIST LIST SCORE
         listScore.insertAdjacentHTML('afterbegin',`
             <div class="score">
                 <span>${doc.data().username}</span>
