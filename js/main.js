@@ -3,7 +3,7 @@
 //https://www.youtube.com/watch?v=oy5QVxzOk6k
 // https://github.com/untitled-team-101/Bricks-Breaker - Refer only to the core parts of the game such as pad control,
 //ball movement, collision handling. After that, I will develop the game according to my own ideas
-import {storeScore} from './firebase.js'
+import {storeScore, getScore} from './firebase.js'
 
 var startModal = document.getElementById('startModal')
 var startGameBtn = document.querySelector('.play-text')
@@ -334,3 +334,5 @@ btnEnterName.addEventListener('click', function() {
     document.querySelector('.intro').classList.remove('hide')
     document.querySelector('.info-start').classList.add('hide')
 })
+
+getScore()

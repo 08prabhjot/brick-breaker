@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-import {doc, setDoc,getDoc,updateDoc, getFirestore} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+import {doc, setDoc,getDoc,getDocs,collection, getFirestore} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
 import { 
     getAuth
 }from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
@@ -20,16 +20,25 @@ const database = getFirestore();
 
 
 const auth = getAuth(app);
+const querySnapshot = await getDocs(collection(database, "scores")); //GET ALL DOCUMENT FORM COLLECTION "scores"
 
 export async function storeScore(username, score) {
     let scoreData = {
         username: username,
         score: score
     }
-    let ref = doc(database, "scores", username)
-    await setDoc(ref, scoreData).then(() => {
+    let ref = doc(database, "scores", username) //SET A REF ID IS 'username' IN COLLECTION 'score' OF DATABASE
+    await setDoc(ref, scoreData).then(() => { // MAP DATA WITH REF AND STORE IN DATABASE
         console.log('store score')
     }).catch(err => {
         console.log(err)
     })
+}
+
+export async function getScore() {
+    let listScore = {}
+    querySnapshot.forEach((doc) => { //THROUGH EACH RECORD
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+    });
 }
