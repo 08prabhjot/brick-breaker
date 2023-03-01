@@ -53,7 +53,7 @@ body {
 }
 
 .title {
-    color: #88ff55;
+    color: rgb(25, 160, 25);
     font-size: 4rem;
     text-align: center;
 }
@@ -393,5 +393,45 @@ body {
         margin: 0 1rem;
         padding: 0 5px;
         outline: none;
+    }
+}
+
+.top-score {
+    width: 400px;
+    height: 500px;
+    border-radius: 10px;
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(210,242,242,1) 45%, rgba(185,240,240,1) 71%, rgba(0,255,250,1) 100%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+
+    .title {
+        font-size: 30px;
+        text-transform: uppercase;
+    }
+    .content {
+        padding: 1rem 0;
+        .header {
+            display: flex;
+            justify-content: space-between;
+            color: black;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .list-score {
+            margin-top: 1rem;
+            .score {
+                display: flex;
+                justify-content: space-between;
+                color: black;
+                text-transform: uppercase;
+                padding: 10px 0;
+            }
+        }
     }
 }

@@ -52,7 +52,7 @@ body {
 }
 
 .title {
-  color: #88ff55;
+  color: rgb(25, 160, 25);
   font-size: 4rem;
   text-align: center;
 }
@@ -371,5 +371,43 @@ body {
   margin: 0 1rem;
   padding: 0 5px;
   outline: none;
+}
+
+.top-score {
+  width: 400px;
+  height: 500px;
+  border-radius: 10px;
+  background: radial-gradient(circle, rgb(255, 255, 255) 0%, rgb(210, 242, 242) 45%, rgb(185, 240, 240) 71%, rgb(0, 255, 250) 100%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+.top-score .title {
+  font-size: 30px;
+  text-transform: uppercase;
+}
+.top-score .content {
+  padding: 1rem 0;
+}
+.top-score .content .header {
+  display: flex;
+  justify-content: space-between;
+  color: black;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.top-score .content .list-score {
+  margin-top: 1rem;
+}
+.top-score .content .list-score .score {
+  display: flex;
+  justify-content: space-between;
+  color: black;
+  text-transform: uppercase;
+  padding: 10px 0;
 }
 /*# sourceMappingURL=main.css.map */
