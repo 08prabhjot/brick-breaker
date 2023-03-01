@@ -425,6 +425,7 @@ body {
 
         .list-score {
             margin-top: 1rem;
+            max-height: 350px;
             .score {
                 display: flex;
                 justify-content: space-between;
@@ -432,6 +433,8 @@ body {
                 text-transform: uppercase;
                 padding: 10px 0;
             }
+            overflow: hidden;
+            overflow-y: scroll;
         }
     }
 }

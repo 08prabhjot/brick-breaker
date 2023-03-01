@@ -402,6 +402,9 @@ body {
 }
 .top-score .content .list-score {
   margin-top: 1rem;
+  max-height: 350px;
+  overflow: hidden;
+  overflow-y: scroll;
 }
 .top-score .content .list-score .score {
   display: flex;
