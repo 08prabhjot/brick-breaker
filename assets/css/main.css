@@ -346,4 +346,24 @@ body {
 .modal-notify .modal-body.lose .control button.restart {
   display: inline;
 }
+
+.info {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.info button {
+  padding: 14px 20px;
+}
+.info input {
+  height: 46px;
+  margin: 0 1rem;
+  padding: 0 5px;
+  outline: none;
+}
 /*# sourceMappingURL=main.css.map */
