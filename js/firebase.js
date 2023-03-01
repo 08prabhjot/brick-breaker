@@ -1,6 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-import { getDatabase, ref, set, onValue, update } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 import {doc, setDoc,getDoc,updateDoc, getFirestore} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+import { 
+    getAuth
+}from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyANjXg9ighDIyS7xgYEIUfg65Bcdzv396I",
@@ -18,3 +20,16 @@ const database = getFirestore();
 
 
 const auth = getAuth(app);
+
+export async function storeScore(username, score) {
+    let scoreData = {
+        username: username,
+        score: score
+    }
+    let ref = doc(database, "scores", username)
+    await setDoc(ref, scoreData).then(() => {
+        console.log('store score')
+    }).catch(err => {
+        console.log(err)
+    })
+}

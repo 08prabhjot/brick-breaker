@@ -350,7 +350,7 @@ body {
   display: inline;
 }
 
-.info {
+.info-start {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -360,13 +360,13 @@ body {
   justify-content: center;
   align-items: center;
 }
-.info.hide {
+.info-start.hide {
   display: none;
 }
-.info button {
+.info-start button {
   padding: 14px 20px;
 }
-.info input {
+.info-start input {
   height: 46px;
   margin: 0 1rem;
   padding: 0 5px;
@@ -385,6 +385,9 @@ body {
   color: white;
   padding: 2rem;
   text-align: center;
+}
+.top-score.hide {
+  display: none;
 }
 .top-score .title {
   font-size: 30px;
