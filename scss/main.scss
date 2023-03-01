@@ -224,6 +224,9 @@ body {
             * {
                 display: block;
             }
+            span {
+                display: inline;
+            }
         }
         .character {
             position: absolute;
@@ -377,6 +380,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    &.hide {
+        display: none;
+    }
 
     button {
         padding: 14px 20px;

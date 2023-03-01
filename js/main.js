@@ -18,6 +18,7 @@ var nextBtn = document.querySelector('.control .btn-next')
 var skipBtn = document.querySelector('.skip .btn-skip')
 var notifyModal = document.querySelector('.modal-notify')
 var btnRestartLevel = notifyModal.querySelector('.again') 
+var btnEnterName = document.querySelector('.enter-name')
 
 
 // CONFIG VALUE
@@ -324,3 +325,9 @@ btnRestartLevel.addEventListener('click', function() {
 })
 
 
+btnEnterName.addEventListener('click', function() {
+    let name = document.querySelector('#name').value
+    document.querySelector('.username').textContent = name
+    document.querySelector('.intro').classList.remove('hide')
+    document.querySelector('.info').classList.add('hide')
+})

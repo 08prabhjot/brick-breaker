@@ -223,6 +223,9 @@ body {
 .intro .item.active * {
   display: block;
 }
+.intro .item.active span {
+  display: inline;
+}
 .intro .item .character {
   position: absolute;
   right: 5%;
@@ -356,6 +359,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.info.hide {
+  display: none;
 }
 .info button {
   padding: 14px 20px;
