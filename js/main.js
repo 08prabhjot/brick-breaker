@@ -290,6 +290,7 @@ function checkWinning() {
         notifyModal.querySelector('.score').textContent = score
         notifyModal.querySelector('.total-score').textContent = totalScore
         clearInterval(timerId)
+        gameRunning = 0
     }
 }
 
@@ -301,8 +302,8 @@ function checkStatus(type) {
         notifyModal.querySelector('.title').textContent = "YOU LOSE"
         notifyModal.querySelector('.score').textContent = score
         notifyModal.querySelector('.total-score').textContent = totalScore
+        gameRunning = 0
     }
-    gameRunning = 0
 }
 
 function restartLevel(level = 1) { //DEFAULT RESTART TO FIRST LEVEL
@@ -314,6 +315,8 @@ function restartLevel(level = 1) { //DEFAULT RESTART TO FIRST LEVEL
         brick.classList.remove('broken')
     }
     mainContainer.style.setProperty("--ball-top", pad.offsetTop - ball.offsetHeight)
+    document.getElementById("score").innerText = totalScore.toString()
+    lives.textContent = startLives
 }
 
 btnRestartLevel.addEventListener('click', function() {
