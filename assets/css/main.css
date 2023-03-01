@@ -386,9 +386,6 @@ body {
   padding: 2rem;
   text-align: center;
 }
-.top-score.hide {
-  display: none;
-}
 .top-score .title {
   font-size: 30px;
   text-transform: uppercase;

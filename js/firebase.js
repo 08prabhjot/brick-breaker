@@ -36,9 +36,13 @@ export async function storeScore(username, score) {
 }
 
 export async function getScore() {
-    let listScore = {}
+    var listScore = document.querySelector('.list-score')
     querySnapshot.forEach((doc) => { //THROUGH EACH RECORD
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
+        listScore.insertAdjacentHTML('afterbegin',`
+            <div class="score">
+                <span>${doc.data().username}</span>
+                <span>${doc.data().score}</span>
+            </div>
+        `)
     });
 }
