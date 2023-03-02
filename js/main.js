@@ -19,6 +19,7 @@ var skipBtn = document.querySelector('.skip .btn-skip')
 var notifyModal = document.querySelector('.modal-notify')
 var btnRestartLevel = notifyModal.querySelector('.again') 
 var btnEnterName = document.querySelector('.enter-name')
+var topScoreBoard = document.querySelector('.top-score')
 
 
 // CONFIG VALUE
@@ -336,3 +337,8 @@ btnEnterName.addEventListener('click', function() {
 })
 
 getScore()
+
+topScore.addEventListener('click', function() {
+    console.log(123)
+    topScoreBoard.classList.remove('hide')
+})

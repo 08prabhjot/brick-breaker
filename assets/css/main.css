@@ -385,6 +385,7 @@ body {
   color: white;
   padding: 2rem;
   text-align: center;
+  z-index: 99;
 }
 .top-score.hide {
   display: none;

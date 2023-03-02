@@ -408,6 +408,7 @@ body {
     color: white;
     padding: 2rem;
     text-align: center;
+    z-index: 99;
 
     &.hide {
         display: none;
