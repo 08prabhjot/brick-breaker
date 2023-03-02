@@ -387,6 +387,12 @@ body {
   text-align: center;
   z-index: 99;
 }
+.top-score .btn-close-score {
+  position: absolute;
+  right: 5%;
+  top: 2%;
+  cursor: pointer;
+}
 .top-score.hide {
   display: none;
 }
