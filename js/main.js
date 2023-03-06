@@ -21,6 +21,7 @@ var btnRestartLevel = notifyModal.querySelector('.again')
 var btnEnterName = document.querySelector('.enter-name')
 var topScoreBoard = document.querySelector('.top-score')
 var closeScoreBoard = document.querySelector('.btn-close-score')
+var btnBackToHome = document.querySelector('.menu')
 
 
 // CONFIG VALUE
@@ -326,6 +327,11 @@ function restartLevel(level = 1) { //DEFAULT RESTART TO FIRST LEVEL
 
 btnRestartLevel.addEventListener('click', function() {
     restartLevel()
+})
+
+btnBackToHome.addEventListener('click', function() {
+    restartLevel()
+    startModal.classList.add('active')
 })
 
 
