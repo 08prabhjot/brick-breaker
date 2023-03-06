@@ -4,15 +4,24 @@ import {
     getAuth
 }from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
 
+// Refer to how to integrate and use firebase:
+// https://firebase.google.com/docs/web/setup
+// https://www.geeksforgeeks.org/firebase-integration-with-web/
+// https://www.freecodecamp.org/news/the-firestore-tutorial-for-2020-learn-by-example/
+// https://firebase.google.com/docs/firestore/quickstart
+// https://firebase.google.com/docs/firestore/manage-data/add-data
+// https://firebase.google.com/docs/firestore/query-data/get-data
+
+
+//CONFIG PROVIDE BY FIREBASE
 const firebaseConfig = {
-    apiKey: "AIzaSyANjXg9ighDIyS7xgYEIUfg65Bcdzv396I",
-    authDomain: "test-d075e.firebaseapp.com",
-    databaseURL: "https://test-d075e-default-rtdb.firebaseio.com",
-    projectId: "test-d075e",
-    storageBucket: "test-d075e.appspot.com",
-    messagingSenderId: "1003451507207",
-    appId: "1:1003451507207:web:84804bcf5664fb189bc0a2",
-    measurementId: "G-5FLQLC7CVY"
+    apiKey: "AIzaSyCSG9SszuMHiH5GkEvP7B8if294FFKnaXE",
+    authDomain: "brick-breaker-27350.firebaseapp.com",
+    projectId: "brick-breaker-27350",
+    storageBucket: "brick-breaker-27350.appspot.com",
+    messagingSenderId: "608182419003",
+    appId: "1:608182419003:web:6372fad03ecabdf8db661e",
+    measurementId: "G-57NQ0NMRQZ"
 };
 
 const app = initializeApp(firebaseConfig);
