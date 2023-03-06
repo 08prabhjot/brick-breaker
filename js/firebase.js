@@ -22,6 +22,8 @@ const database = getFirestore();
 const auth = getAuth(app);
 const querySnapshot = await getDocs(collection(database, "scores")); //GET ALL DOCUMENT FORM COLLECTION "scores"
 
+
+//https://www.youtube.com/watch?v=zSGFGQgDKIo - Refer to how to use firestore
 export async function storeScore(username, score) {
     let scoreData = {
         username: username,
