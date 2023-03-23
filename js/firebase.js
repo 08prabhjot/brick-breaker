@@ -34,16 +34,16 @@ const querySnapshot = await getDocs(collection(database, "scores")); //GET ALL D
 
 //https://www.youtube.com/watch?v=zSGFGQgDKIo - Refer to how to use firestore
 export async function storeScore(username, score) {
-    let scoreData = {
-        username: username,
-        score: score
-    }
-    let ref = doc(database, "scores", username) //SET A REF ID IS 'username' IN COLLECTION 'score' OF DATABASE
-    await setDoc(ref, scoreData).then(() => { // MAP DATA WITH REF AND STORE IN DATABASE
-        console.log('store score')
-    }).catch(err => {
-        console.log(err)
-    })
+    // let scoreData = {
+    //     username: username,
+    //     score: score
+    // }
+    // let ref = doc(database, "scores", username) //SET A REF ID IS 'username' IN COLLECTION 'score' OF DATABASE
+    // await setDoc(ref, scoreData).then(() => { // MAP DATA WITH REF AND STORE IN DATABASE
+    //     console.log('store score')
+    // }).catch(err => {
+    //     console.log(err)
+    // })
 }
 
 export async function getScore() {

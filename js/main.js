@@ -23,6 +23,7 @@ var topScoreBoard = document.querySelector('.top-score')
 var closeScoreBoard = document.querySelector('.btn-close-score')
 var btnBackToHome = document.querySelector('.menu')
 var containerBricks = document.querySelector('.bricks')
+var nextLevel = document.querySelector('button.next')
 
 // CONFIG VALUE
 let gameRunning = 0;
@@ -43,6 +44,18 @@ let movementPhysics = 40 // Movement speed of pad on keyboard controls
 let score = 0 //SCORE ONLY IN A LEVEL
 let username = ''
 let currentLevel = 1
+const levelList = [ //DEFINE LEVELS IN GAME
+    {brick: 3, brick_2: 0, brick_3: 0},
+    {brick: 8, brick_2: 0, brick_3: 0},
+    {brick: 8, brick_2: 2, brick_3: 0},
+    {brick: 7, brick_2: 7, brick_3: 0},
+    {brick: 3, brick_2: 9, brick_3: 2},
+    {brick: 3, brick_2: 6, brick_3: 5},
+    {brick: 3, brick_2: 3, brick_3: 8},
+    {brick: 2, brick_2: 3, brick_3: 10},
+    {brick: 8, brick_2: 4, brick_3: 6},
+    {brick: 4, brick_2: 8, brick_3: 10},
+]
 
 startGameBtn.addEventListener('click', function() {
     startModal.classList.remove('active')
@@ -252,12 +265,16 @@ const checkPadCollision = () => {
     if (getCollisionBetween(ball, pad)) {
         padCollisionPoint = ball.offsetLeft + ball.offsetWidth / 2;
         if (padCollisionPoint < (pad.offsetLeft + pad.offsetWidth / 4)) {
+            ballsDirection.left = -2
             ballsDirection.top = -2
         } else if (padCollisionPoint < (pad.offsetLeft + pad.offsetWidth / 2)) {
-            ballsDirection.left = -2
-        } else if (padCollisionPoint >= (pad.offsetLeft + pad.offsetWidth / 2) && padCollisionPoint < (pad.offsetLeft + pad.offsetWidth / 4 * 3)) {
-            ballsDirection.left = 2
+            ballsDirection.left = -1
+            ballsDirection.top = -3
+        } else if (padCollisionPoint >= (pad.offsetLeft + pad.offsetWidth / 2) && padCollisionPoint < (pad.offsetLeft + (pad.offsetWidth / 4) * 3)) {
+            ballsDirection.left = 1
+            ballsDirection.top = -3
         } else {
+            ballsDirection.left = 2
             ballsDirection.top = -2
         }
         while (ballTop + ball.offsetHeight > pad.offsetTop)
@@ -327,6 +344,19 @@ function restartLevel(level = 1) { //DEFAULT RESTART TO FIRST LEVEL
     lives.textContent = startLives
 }
 
+function nextLevelLevel(level = 1) {
+    score = 0
+    startLives = 2
+    notifyModal.classList.add('hide')
+    for (let brick of bricks) {
+        brick.remove()
+    }
+    generateBricks(level) //REMOVE OLD BRICKS AND GENERATE NEW BRICKS
+    mainContainer.style.setProperty("--ball-top", pad.offsetTop - ball.offsetHeight)
+    document.getElementById("score").innerText = totalScore.toString()
+    lives.textContent = startLives
+}
+
 btnRestartLevel.addEventListener('click', function() {
     restartLevel()
 })
@@ -355,20 +385,6 @@ closeScoreBoard.addEventListener('click', function() {
     topScoreBoard.classList.add('hide')
 })
 
-const levelList = [ //DEFINE LEVELS IN GAME
-    {brick: 3, brick_2: 0, brick_3: 0},
-    {brick: 8, brick_2: 0, brick_3: 0},
-    {brick: 8, brick_2: 2, brick_3: 0},
-    {brick: 7, brick_2: 7, brick_3: 0},
-    {brick: 3, brick_2: 9, brick_3: 2},
-    {brick: 3, brick_2: 6, brick_3: 5},
-    {brick: 3, brick_2: 3, brick_3: 8},
-    {brick: 2, brick_2: 3, brick_3: 10},
-    {brick: 8, brick_2: 4, brick_3: 6},
-    {brick: 4, brick_2: 8, brick_3: 10},
-]
-
-
 function generateBricks(level) {
     let levelGame = levelList[level-1]
     let listBrickType = Object.keys(levelGame).filter(key => { // CONVERT OBJECT TO ARRAY AND ONLY GET TYPES IF AMOUNT OF IT > 0
@@ -391,4 +407,10 @@ function generateBricks(level) {
         levelGame[type] -= 1; //Reduce the number of brick types after creating
         totalBrick -= 1; //Reduce the total number of brick after creating
     } while(totalBrick)
+    bricks = document.querySelectorAll(".brick") //GET LIST BRICKS AGAIN
 }
+
+nextLevel.addEventListener('click', () => {
+    currentLevel += 1 //SET NEXT LEVEL
+    nextLevelLevel(currentLevel)
+})
