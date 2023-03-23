@@ -22,7 +22,7 @@ var btnEnterName = document.querySelector('.enter-name')
 var topScoreBoard = document.querySelector('.top-score')
 var closeScoreBoard = document.querySelector('.btn-close-score')
 var btnBackToHome = document.querySelector('.menu')
-
+var containerBricks = document.querySelector('.bricks')
 
 // CONFIG VALUE
 let gameRunning = 0;
@@ -42,11 +42,13 @@ let ballsDirection = {
 let movementPhysics = 40 // Movement speed of pad on keyboard controls
 let score = 0 //SCORE ONLY IN A LEVEL
 let username = ''
+let currentLevel = 1
 
 startGameBtn.addEventListener('click', function() {
     startModal.classList.remove('active')
     mainContainer.classList.remove('hide')
     mainContainer.style.setProperty("--ball-top", pad.offsetTop - ball.offsetHeight)
+    generateBricks(currentLevel)
 })
 lives.textContent = startLives // SET DEFAULT LIVES
 
@@ -352,3 +354,41 @@ topScore.addEventListener('click', function() {
 closeScoreBoard.addEventListener('click', function() {
     topScoreBoard.classList.add('hide')
 })
+
+const levelList = [ //DEFINE LEVELS IN GAME
+    {brick: 3, brick_2: 0, brick_3: 0},
+    {brick: 8, brick_2: 0, brick_3: 0},
+    {brick: 8, brick_2: 2, brick_3: 0},
+    {brick: 7, brick_2: 7, brick_3: 0},
+    {brick: 3, brick_2: 9, brick_3: 2},
+    {brick: 3, brick_2: 6, brick_3: 5},
+    {brick: 3, brick_2: 3, brick_3: 8},
+    {brick: 2, brick_2: 3, brick_3: 10},
+    {brick: 8, brick_2: 4, brick_3: 6},
+    {brick: 4, brick_2: 8, brick_3: 10},
+]
+
+
+function generateBricks(level) {
+    let levelGame = levelList[level-1]
+    let listBrickType = Object.keys(levelGame).filter(key => { // CONVERT OBJECT TO ARRAY AND ONLY GET TYPES IF AMOUNT OF IT > 0
+        return levelGame[key]
+    })
+    let totalBrick = Object.values(levelGame).reduce((a, b) => a + b, 0) //CONVERT OBJECT TO ARRAY FOR SUM TOTAL BRICK
+    
+    do {
+        let brick = document.createElement('div')
+        brick.classList.add('brick')
+        let randomBrick = Math.ceil(Math.random()*(listBrickType.length-1)) //RANDOM INDEX OF BRICK TYPE IN LIST TYPE 
+        let type = listBrickType[randomBrick] //Get brick type from list type
+        if(levelGame[type] <= 0) { //Remove this type if this type has reached its limit
+            listBrickType.splice(listBrickType.indexOf(type),1)
+            randomBrick = Math.ceil(Math.random()*(listBrickType.length-1))
+            type = listBrickType[randomBrick] //Get brick type from list type
+        }
+        brick.classList.add(type) //Add class to brick
+        containerBricks.append(brick) // Add brick to container bricks
+        levelGame[type] -= 1; //Reduce the number of brick types after creating
+        totalBrick -= 1; //Reduce the total number of brick after creating
+    } while(totalBrick)
+}
