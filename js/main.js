@@ -458,17 +458,27 @@ function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
+
+const listItems = [
+    {name: 'power', image: 'supper_ball.png', effect: 'power', time: 5000},
+    {name: 'increase_width', image: 'increase_width.png', effect: 'increase_width', time: 5000},
+    {name: 'reduce_width', image: 'reduce_width.png', effect: 'reduce_width', time: 5000},
+    // {name: 'power', image: 'supper_ball.png', effect: 'power'}
+]
+
 function randomItems() {
     let number = randomNumber(1,5)
     if(number) {
         let item = document.createElement('div')
         item.classList.add('drop-item')
 
+        let getItem = Object.assign({}, listItems[randomNumber(0,2)])
         let position = randomNumber(1,100) //RANDOM POSITION TO START DROP ITEM
         let propertyName = '--item-top-'+ Date.now() // CREATE NEW PROPERTY FOR EACH ITEM
         mainContainer.style.setProperty(propertyName, "0") //SET PROPERTY POSITION START AT TOP 0
         item.style.top = `calc(var(${propertyName}) * 1px)` //APPLY POSITION TO ITEM
         item.style.left = position + '%' //SET POSITION TO ITEM
+        item.style.backgroundImage = `url(../../img/${getItem.image})`
         mainContainer.append(item) //APPEND ITEM TO MAIN SCREEN
 
         let itemTop = 0;
@@ -477,9 +487,42 @@ function randomItems() {
             mainContainer.style.setProperty(propertyName, itemTop.toString()) //INCREASE VALUE OF TOP PROPERTY
            
             if(getCollisionBetween(item, pad) || (itemTop > mainContainer.offsetHeight - item.offsetWidth - 1)) { // CHECK IF GET ITEM SUCCESSFULY OR DROP OUT RANGE
+                if(getCollisionBetween(item, pad)) {
+                    applyEffect(getItem)
+                }
                 item.remove() //REMOVE ITEM
                 clearInterval(dropItemInterval)
             }
         }, 5)
+    }
+}
+
+function applyEffect(item) {
+    switch (item.effect) {
+        case 'power':
+            ball.classList.add('super')
+            let superTimeout = setTimeout(() => {
+                ball.classList.remove('super')
+                clearTimeout(superTimeout)
+            }, item.time)
+            break;
+        case 'increase_width':
+            pad.classList.add('increase')
+            pad.classList.remove('reduce')
+            let increaseTimeout = setTimeout(() => {
+                pad.classList.remove('increase')
+                clearTimeout(increaseTimeout)
+            }, item.time)
+            break;
+        case 'reduce_width':
+            pad.classList.add('reduce')
+            pad.classList.remove('increase')
+            let reduceTimeout = setTimeout(() => {
+                pad.classList.remove('reduce')
+                clearTimeout(reduceTimeout)
+            }, item.time)
+            break;
+        default:
+            break;
     }
 }
