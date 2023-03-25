@@ -356,6 +356,7 @@ function checkStatus(type) {
         notifyModal.querySelector('.score').textContent = score
         notifyModal.querySelector('.total-score').textContent = totalScore
         gameRunning = 0
+        currentLevel = 0
         let dropItem = document.querySelectorAll('.drop-item')
         if(dropItem) {
             //REMOVE ALL DROP ITEM WHEN END LEVEL
@@ -398,7 +399,8 @@ btnRestartPlayAgain.addEventListener('click', function() {
     score = 0
     startLives = 2
     totalScore = 0
-    restartLevel(1)
+    currentLevel = currentLevel ? currentLevel + 1 : 1
+    restartLevel(currentLevel)
 })
 
 btnRestartGame.addEventListener('click', function() {
@@ -591,7 +593,7 @@ function applyEffect(item) {
             break;
         case 'coin':
             balanceCoin += 2
-            document.querySelector('#balance').textContent = 'Balance: ' + balanceCoin //BALANCE AT STATISTIC
+            document.querySelector('#balance').textContent = balanceCoin //BALANCE AT STATISTIC
             break;
         default:
             break;
