@@ -351,6 +351,13 @@ function checkStatus(type) {
         notifyModal.querySelector('.score').textContent = score
         notifyModal.querySelector('.total-score').textContent = totalScore
         gameRunning = 0
+        let dropItem = document.querySelectorAll('.drop-item')
+        if(dropItem) {
+            //REMOVE ALL DROP ITEM WHEN END LEVEL
+            dropItem.forEach(item => {
+                item.remove()
+            })
+        }
         storeScore(username, totalScore)
     }
 }
