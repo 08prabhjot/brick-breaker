@@ -475,4 +475,80 @@ body {
   text-transform: uppercase;
   padding: 10px 0;
 }
+
+.modal-store {
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 99;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+.modal-store .modal-body {
+  width: 700px;
+  border-radius: 10px;
+  background: radial-gradient(circle, rgb(255, 255, 255) 0%, rgb(210, 242, 242) 45%, rgb(185, 240, 240) 71%, rgb(0, 255, 250) 100%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  padding: 2rem;
+  text-align: center;
+}
+.modal-store .modal-body h1 {
+  color: rgb(25, 160, 25);
+  font-size: 46px;
+  font-weight: bold;
+}
+.modal-store .modal-body .your-coin {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+.modal-store .modal-body .your-coin .balance, .modal-store .modal-body .your-coin img {
+  vertical-align: middle;
+}
+.modal-store .modal-body .items {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin: 0 1rem;
+}
+.modal-store .modal-body .items .buy-item {
+  padding: 5px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+.modal-store .modal-body .items .buy-item span, .modal-store .modal-body .items .buy-item img {
+  vertical-align: middle;
+}
+.modal-store .modal-body .control {
+  padding: 2rem 0 0 0;
+}
+.modal-store .modal-body .control button {
+  border: 5px solid #74EFFE;
+  background-color: #0099E1;
+  border-radius: 100%;
+  padding: 10px;
+  margin: 0 0.5rem;
+  max-height: 60px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+.modal-store .modal-body .control button img {
+  width: 30px;
+  height: 30px;
+}
+.modal-store .modal-body .control button.next, .modal-store .modal-body .control button.restart {
+  padding: 10px 1.5rem;
+  border-radius: 1000px;
+}
+.modal-store .modal-body .control button:hover {
+  opacity: 1;
+}
+.modal-store .modal-body .control button:hover img {
+  transform: scale(1.1);
+}
+.modal-store .modal-body .control button.restart {
+  display: none;
+}
 /*# sourceMappingURL=main.css.map */

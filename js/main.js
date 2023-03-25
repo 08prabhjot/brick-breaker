@@ -26,6 +26,7 @@ var containerBricks = document.querySelector('.bricks')
 var nextLevel = document.querySelector('button.next')
 var btnSelectBall = document.querySelectorAll('.select-ball')
 var btnSelectPad = document.querySelectorAll('.select-pad')
+var btnRestartGame = notifyModal.querySelector('.restart') 
 
 // CONFIG VALUE
 let gameRunning = 0;
@@ -363,6 +364,7 @@ function checkStatus(type) {
 }
 
 function restartLevel(level = 1) { //DEFAULT RESTART TO FIRST LEVEL
+    notifyModal.querySelector('.modal-body').classList.remove('lose')
     totalScore -= score
     if(totalScore <=0) totalScore = 0
     score = 0
@@ -389,6 +391,13 @@ function nextLevelLevel(level = 1) {
 
 btnRestartLevel.addEventListener('click', function() {
     restartLevel(currentLevel)
+})
+
+btnRestartGame.addEventListener('click', function() {
+    score = 0
+    startLives = 2
+    totalScore = 0
+    restartLevel(1)
 })
 
 btnBackToHome.addEventListener('click', function() {
