@@ -47,7 +47,7 @@ let score = 0 //SCORE ONLY IN A LEVEL
 let username = ''
 let currentLevel = 1
 const levelList = [ //DEFINE LEVELS IN GAME
-    {brick: 3, brick_2: 0, brick_3: 0},
+    {brick: 3, brick_2: 1, brick_3: 0},
     {brick: 6, brick_2: 0, brick_3: 0},
     {brick: 8, brick_2: 2, brick_3: 0},
     {brick: 7, brick_2: 7, brick_3: 0},
@@ -237,7 +237,7 @@ const onCollisionWithBrick = (ball, brick, collision) => {
     let brickClassList = [...brick.classList].filter(item => { //CONVERT DOMList to Array
         return item.match(/brick_[2-9]/) //ONLY GET CLASS MATCH WITH FORMAT `brick_{2->9}`, ex: brick_3
     })
-    if(brickClassList.length) { // IF BRICK IS NOT LOWEST LEVEL
+    if(brickClassList.length && !ball.classList.contains('super')) { // IF BRICK IS NOT LOWEST LEVEL OR BALL IS NOT POWER
         let splitClass = brickClassList[0].split('_') // CONVERT STRING TO ARRAY WITH SEPARATED BY COMMA _ 
         let nextBrickType = splitClass[1] - 1; // DOWNGRADE LEVEL OF BRICK
         if(nextBrickType > 0) { // IF BRICK IS NOT LOWEST LEVEL, SET NEW LEVEL FOR IT

@@ -197,6 +197,11 @@ body {
   top: calc(var(--ball-top) * 1px);
   left: calc(var(--ball-left) * 1px);
 }
+.ball.super {
+  background-image: url("../../img/supper_ball.png") !important;
+  width: 6vh;
+  height: 6vh;
+}
 
 .statistic {
   position: absolute;
