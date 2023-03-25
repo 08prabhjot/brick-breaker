@@ -25,6 +25,7 @@ var btnBackToHome = document.querySelector('.menu')
 var containerBricks = document.querySelector('.bricks')
 var nextLevel = document.querySelector('button.next')
 var btnSelectBall = document.querySelectorAll('.select-ball')
+var btnSelectPad = document.querySelectorAll('.select-pad')
 
 // CONFIG VALUE
 let gameRunning = 0;
@@ -432,7 +433,22 @@ nextLevel.addEventListener('click', () => {
 
 btnSelectBall.forEach(btn => {
     btn.addEventListener('click', function() {
+        btnSelectBall.forEach(item => {
+            item.classList.remove('active') //REMOVE ALL SELECTED BALL BEFORE SELECT NEW BALL
+        })
         let ball = btn.getAttribute('ball')
+        btn.classList.add('active') //SET ACTIVE NEW BALL
         document.querySelector('.ball').style.backgroundImage = `url('../../img/${ball}')` // CHANGE BACKGROUND OF BALL
+    })
+})
+
+btnSelectPad.forEach(btn => {
+    btn.addEventListener('click', function() {
+        btnSelectPad.forEach(item => {
+            item.classList.remove('active') //REMOVE ALL SELECTED PAD BEFORE SELECT NEW PAD
+        })
+        let ball = btn.getAttribute('pad')
+        btn.classList.add('active') //SET ACTIVE NEW PAD
+        document.querySelector('.pad').style.backgroundImage = `url('../../img/${ball}')` // CHANGE BACKGROUND OF BALL
     })
 })

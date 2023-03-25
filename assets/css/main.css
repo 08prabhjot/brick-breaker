@@ -52,8 +52,9 @@ body {
 }
 .modal .optional-ball {
   position: absolute;
-  bottom: 10%;
+  bottom: 5%;
   left: 50%;
+  text-align: center;
   transform: translateX(-50%);
   background-color: gray;
 }
@@ -65,11 +66,15 @@ body {
   border: none;
   background-color: transparent;
   cursor: pointer;
-  margin: 1rem;
+  margin: 0.5rem;
 }
-.modal .optional-ball button:focus {
+.modal .optional-ball button.select-ball.active {
   background-color: black;
   border-radius: 100%;
+}
+.modal .optional-ball .option-pad button.select-pad.active {
+  background-color: black;
+  border-radius: 0;
 }
 
 .title {

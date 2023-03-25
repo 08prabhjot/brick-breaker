@@ -53,8 +53,9 @@ body {
 
     .optional-ball {
         position: absolute;
-        bottom: 10%;
+        bottom: 5%;    
         left: 50%;
+        text-align: center;
         transform: translateX(-50%);
         background-color: gray;
         h4 {
@@ -65,10 +66,18 @@ body {
             border: none;
             background-color: transparent;
             cursor: pointer;
-            margin: 1rem;
-            &:focus {
+            margin: .5rem;
+            &.select-ball.active {
                 background-color: black;
                 border-radius: 100%;
+            }
+        }
+        .option-pad {
+            button {
+                &.select-pad.active {
+                    background-color: black;
+                    border-radius: 0;
+                }
             }
         }
     }
