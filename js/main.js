@@ -452,3 +452,19 @@ btnSelectPad.forEach(btn => {
         document.querySelector('.pad').style.backgroundImage = `url('../../img/${ball}')` // CHANGE BACKGROUND OF BALL
     })
 })
+
+let itemTop = 0;
+let dropItemInterval = setInterval(() => {
+    let item = document.querySelector('.drop-item')
+    itemTop += 1
+    mainContainer.style.setProperty("--item-top", itemTop.toString())
+   
+    if(getCollisionBetween(item, pad)) { // CHECK IF GET ITEM SUCCESSFULY
+        item.remove()
+        clearInterval(dropItemInterval)
+    }
+}, 5)
+
+let randomDropItems = setInterval(() => {
+    
+}, 10)

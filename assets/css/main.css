@@ -12,6 +12,7 @@
   --pad-left: 0;
   --power-up-left: 0;
   --power-up-top: 0;
+  --item-top: 0;
 }
 
 body {
@@ -144,7 +145,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
-#gameBoard .item {
+#gameBoard .drop-item {
   width: 40px;
   height: 40px;
   background-image: url("../../img/increase_width.png");
@@ -154,24 +155,7 @@ body {
   border-radius: 100%;
   background-position: center;
   position: absolute;
-  -webkit-animation: drop 6s linear;
-          animation: drop 6s linear;
-}
-@-webkit-keyframes drop {
-  from {
-    top: 0%;
-  }
-  to {
-    top: 100%;
-  }
-}
-@keyframes drop {
-  from {
-    top: 0%;
-  }
-  to {
-    top: 100%;
-  }
+  top: calc(var(--item-top) * 1px);
 }
 
 .bricks {
