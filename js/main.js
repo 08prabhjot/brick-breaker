@@ -330,6 +330,13 @@ function checkWinning() {
         notifyModal.classList.remove('hide')
         notifyModal.querySelector('.score').textContent = score
         notifyModal.querySelector('.total-score').textContent = totalScore
+        let dropItem = document.querySelectorAll('.drop-item')
+        if(dropItem) {
+            //REMOVE ALL DROP ITEM WHEN END LEVEL
+            dropItem.forEach(item => {
+                item.remove()
+            })
+        }
         clearInterval(timerId)
         gameRunning = 0
     }
