@@ -46,6 +46,7 @@ let movementPhysics = 40 // Movement speed of pad on keyboard controls
 let score = 0 //SCORE ONLY IN A LEVEL
 let username = ''
 let currentLevel = 1
+let scoreEach = 100
 const levelList = [ //DEFINE LEVELS IN GAME
     {brick: 3, brick_2: 1, brick_3: 0},
     {brick: 6, brick_2: 0, brick_3: 0},
@@ -58,6 +59,7 @@ const levelList = [ //DEFINE LEVELS IN GAME
     {brick: 8, brick_2: 4, brick_3: 6},
     {brick: 4, brick_2: 8, brick_3: 10},
 ]
+let speed = 1
 
 startGameBtn.addEventListener('click', function() {
     startModal.classList.remove('active')
@@ -132,8 +134,8 @@ const startGame = () => {
 }
 
 const moveBall = () => {
-    ballTop += ballsDirection.top;
-    ballLeft += ballsDirection.left;
+    ballTop += ballsDirection.top * speed;
+    ballLeft += ballsDirection.left * speed;
     mainContainer.style.setProperty("--ball-left", ballLeft.toString())
     mainContainer.style.setProperty("--ball-top", ballTop.toString())
     checkCollision()
@@ -231,8 +233,8 @@ const getCollisionBetween = (element1, element2) => {
 }
 
 const onCollisionWithBrick = (ball, brick, collision) => {
-    totalScore += 100
-    score += 100
+    totalScore += scoreEach
+    score += scoreEach
     document.getElementById("score").innerText = totalScore.toString()
     let brickClassList = [...brick.classList].filter(item => { //CONVERT DOMList to Array
         return item.match(/brick_[2-9]/) //ONLY GET CLASS MATCH WITH FORMAT `brick_{2->9}`, ex: brick_3
@@ -463,16 +465,20 @@ const listItems = [
     {name: 'power', image: 'supper_ball.png', effect: 'power', time: 5000},
     {name: 'increase_width', image: 'increase_width.png', effect: 'increase_width', time: 5000},
     {name: 'reduce_width', image: 'reduce_width.png', effect: 'reduce_width', time: 5000},
-    // {name: 'power', image: 'supper_ball.png', effect: 'power'}
+    {name: 'heart_add', image: 'heart.png', effect: 'heart_add', time: 5000},
+    {name: 'heart_reduce', image: 'heart-minus.png', effect: 'heart_reduce', time: 5000},
+    {name: 'double_point', image: 'point.png', effect: 'double_point', time: 5000},
+    {name: 'slow', image: 'slow.png', effect: 'slow', time: 5000},
+    {name: 'speed', image: 'speed.png', effect: 'speed', time: 5000},
 ]
 
 function randomItems() {
     let number = randomNumber(1,5)
-    if(number) {
+    if(number == 5) {
         let item = document.createElement('div')
         item.classList.add('drop-item')
 
-        let getItem = Object.assign({}, listItems[randomNumber(0,2)])
+        let getItem = Object.assign({}, listItems[0, listItems.length - 1])
         let position = randomNumber(1,100) //RANDOM POSITION TO START DROP ITEM
         let propertyName = '--item-top-'+ Date.now() // CREATE NEW PROPERTY FOR EACH ITEM
         mainContainer.style.setProperty(propertyName, "0") //SET PROPERTY POSITION START AT TOP 0
@@ -520,6 +526,35 @@ function applyEffect(item) {
             let reduceTimeout = setTimeout(() => {
                 pad.classList.remove('reduce')
                 clearTimeout(reduceTimeout)
+            }, item.time)
+            break;
+        case 'heart_add':
+            startLives = startLives + 1
+            lives.textContent = startLives
+            break;
+        case 'heart_reduce':
+            startLives = startLives - 1
+            lives.textContent = startLives
+            break;
+        case 'double_point':
+            scoreEach = 200
+            let doubleTimeout = setTimeout(() => {
+                scoreEach = 100
+                clearTimeout(doubleTimeout)
+            }, item.time)
+            break;
+        case 'slow':
+            speed = .5
+            let slowTimeout = setTimeout(() => {
+                speed = 1
+                clearTimeout(slowTimeout)
+            }, item.time)
+            break;
+        case 'speed':
+            speed = 2
+            let speedTimeout = setTimeout(() => {
+                speed = 1
+                clearTimeout(speedTimeout)
             }, item.time)
             break;
         default:
