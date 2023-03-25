@@ -46,7 +46,7 @@ let username = ''
 let currentLevel = 1
 const levelList = [ //DEFINE LEVELS IN GAME
     {brick: 3, brick_2: 0, brick_3: 0},
-    {brick: 8, brick_2: 0, brick_3: 0},
+    {brick: 6, brick_2: 0, brick_3: 0},
     {brick: 8, brick_2: 2, brick_3: 0},
     {brick: 7, brick_2: 7, brick_3: 0},
     {brick: 3, brick_2: 9, brick_3: 2},
@@ -61,7 +61,7 @@ startGameBtn.addEventListener('click', function() {
     startModal.classList.remove('active')
     mainContainer.classList.remove('hide')
     mainContainer.style.setProperty("--ball-top", pad.offsetTop - ball.offsetHeight)
-    generateBricks(currentLevel)
+    generateBricks(1)
 })
 lives.textContent = startLives // SET DEFAULT LIVES
 
@@ -232,7 +232,19 @@ const onCollisionWithBrick = (ball, brick, collision) => {
     totalScore += 100
     score += 100
     document.getElementById("score").innerText = totalScore.toString()
-    brick.classList.add('broken')
+    let brickClassList = [...brick.classList].filter(item => { //CONVERT DOMList to Array
+        return item.match(/brick_[2-9]/) //ONLY GET CLASS MATCH WITH FORMAT `brick_{2->9}`, ex: brick_3
+    })
+    if(brickClassList.length) { // IF BRICK IS NOT LOWEST LEVEL
+        let splitClass = brickClassList[0].split('_') // CONVERT STRING TO ARRAY WITH SEPARATED BY COMMA _ 
+        let nextBrickType = splitClass[1] - 1; // DOWNGRADE LEVEL OF BRICK
+        if(nextBrickType > 0) { // IF BRICK IS NOT LOWEST LEVEL, SET NEW LEVEL FOR IT
+            brick.classList.add('brick_' + nextBrickType)
+        }
+        brick.classList.remove(brickClassList[0]) //REMOVE OLD LEVEL
+    } else {
+        brick.classList.add('broken')
+    }
     checkStatus('win')
 }
 
@@ -332,13 +344,12 @@ function checkStatus(type) {
 }
 
 function restartLevel(level = 1) { //DEFAULT RESTART TO FIRST LEVEL
+    totalScore -= score
+    if(totalScore <=0) totalScore = 0
     score = 0
-    totalScore = 0
     startLives = 2
     notifyModal.classList.add('hide')
-    for (let brick of bricks) {
-        brick.classList.remove('broken')
-    }
+    generateBricks(level)
     mainContainer.style.setProperty("--ball-top", pad.offsetTop - ball.offsetHeight)
     document.getElementById("score").innerText = totalScore.toString()
     lives.textContent = startLives
@@ -358,7 +369,7 @@ function nextLevelLevel(level = 1) {
 }
 
 btnRestartLevel.addEventListener('click', function() {
-    restartLevel()
+    restartLevel(currentLevel)
 })
 
 btnBackToHome.addEventListener('click', function() {
@@ -386,12 +397,15 @@ closeScoreBoard.addEventListener('click', function() {
 })
 
 function generateBricks(level) {
-    let levelGame = levelList[level-1]
+    bricks = document.querySelectorAll(".brick")
+    bricks.forEach(item => {
+        item.remove()
+    })
+    let levelGame = Object.assign({}, levelList[level-1]) //Copy out a new object so as not to affect the corner object
     let listBrickType = Object.keys(levelGame).filter(key => { // CONVERT OBJECT TO ARRAY AND ONLY GET TYPES IF AMOUNT OF IT > 0
         return levelGame[key]
     })
     let totalBrick = Object.values(levelGame).reduce((a, b) => a + b, 0) //CONVERT OBJECT TO ARRAY FOR SUM TOTAL BRICK
-    
     do {
         let brick = document.createElement('div')
         brick.classList.add('brick')
