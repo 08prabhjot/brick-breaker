@@ -64,7 +64,7 @@ const levelList = [ //DEFINE LEVELS IN GAME
     {brick: 4, brick_2: 8, brick_3: 10},
 ]
 let speed = 1
-let balanceCoin = 10
+let balanceCoin = 0
 
 startGameBtn.addEventListener('click', function() {
     startModal.classList.remove('active')
@@ -415,6 +415,7 @@ btnRestartGame.addEventListener('click', function() {
 btnBackToHome.addEventListener('click', function() {
     restartLevel()
     startModal.classList.add('active')
+    storeScore(username, totalScore)
 })
 
 
@@ -510,11 +511,11 @@ const listItems = [
 
 function randomItems() {
     let number = randomNumber(1,5)
-    if(number) {
+    if(number >= 4) {
         let item = document.createElement('div')
         item.classList.add('drop-item')
 
-        let getItem = Object.assign({}, listItems[listItems.length - 1])
+        let getItem = Object.assign({}, listItems[randomNumber(0, listItems.length - 1)])
         let position = randomNumber(1,100) //RANDOM POSITION TO START DROP ITEM
         let propertyName = '--item-top-'+ Date.now() // CREATE NEW PROPERTY FOR EACH ITEM
         mainContainer.style.setProperty(propertyName, "0") //SET PROPERTY POSITION START AT TOP 0
