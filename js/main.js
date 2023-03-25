@@ -24,6 +24,7 @@ var closeScoreBoard = document.querySelector('.btn-close-score')
 var btnBackToHome = document.querySelector('.menu')
 var containerBricks = document.querySelector('.bricks')
 var nextLevel = document.querySelector('button.next')
+var btnSelectBall = document.querySelectorAll('.select-ball')
 
 // CONFIG VALUE
 let gameRunning = 0;
@@ -427,4 +428,11 @@ function generateBricks(level) {
 nextLevel.addEventListener('click', () => {
     currentLevel += 1 //SET NEXT LEVEL
     nextLevelLevel(currentLevel)
+})
+
+btnSelectBall.forEach(btn => {
+    btn.addEventListener('click', function() {
+        let ball = btn.getAttribute('ball')
+        document.querySelector('.ball').style.backgroundImage = `url('../../img/${ball}')` // CHANGE BACKGROUND OF BALL
+    })
 })

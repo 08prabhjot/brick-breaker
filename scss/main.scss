@@ -50,6 +50,28 @@ body {
     &.active {
         display: flex;
     }
+
+    .optional-ball {
+        position: absolute;
+        bottom: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: gray;
+        h4 {
+            text-align: center;
+            color: white;
+        }
+        button {
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            margin: 1rem;
+            &:focus {
+                background-color: black;
+                border-radius: 100%;
+            }
+        }
+    }
 }
 
 .title {
@@ -155,10 +177,11 @@ body {
 .pad {
     position: absolute;
     width: 150px;
-    height: 10px;
-    box-shadow: inset 0 0 20px #ffffff;
+    height: 20px;
+    background-image: url('../../img/holder.png');
+    background-size: contain;
     border-radius: 1000px;
-    bottom: 4rem;
+    bottom: 3.5rem;
     left: calc(var(--pad-left) * 1px);
 }
 
