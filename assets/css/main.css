@@ -483,6 +483,9 @@ body {
   height: 100vh;
   position: relative;
 }
+.modal-store.hide {
+  display: none;
+}
 .modal-store .modal-body {
   width: 700px;
   border-radius: 10px;

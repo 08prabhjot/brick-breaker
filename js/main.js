@@ -27,6 +27,7 @@ var nextLevel = document.querySelector('button.next')
 var btnSelectBall = document.querySelectorAll('.select-ball')
 var btnSelectPad = document.querySelectorAll('.select-pad')
 var btnRestartGame = notifyModal.querySelector('.restart') 
+var buyItem = document.querySelectorAll('.buy-item')
 
 // CONFIG VALUE
 let gameRunning = 0;
@@ -61,6 +62,7 @@ const levelList = [ //DEFINE LEVELS IN GAME
     {brick: 4, brick_2: 8, brick_3: 10},
 ]
 let speed = 1
+let balanceCoin = 0
 
 startGameBtn.addEventListener('click', function() {
     startModal.classList.remove('active')
@@ -493,15 +495,16 @@ const listItems = [
     {name: 'double_point', image: 'point.png', effect: 'double_point', time: 5000},
     {name: 'slow', image: 'slow.png', effect: 'slow', time: 5000},
     {name: 'speed', image: 'speed.png', effect: 'speed', time: 5000},
+    {name: 'coin', image: 'coin.png', effect: 'coin', time: 5000},
 ]
 
 function randomItems() {
     let number = randomNumber(1,5)
-    if(number == 5) {
+    if(number) {
         let item = document.createElement('div')
         item.classList.add('drop-item')
 
-        let getItem = Object.assign({}, listItems[0, listItems.length - 1])
+        let getItem = Object.assign({}, listItems[listItems.length - 1])
         let position = randomNumber(1,100) //RANDOM POSITION TO START DROP ITEM
         let propertyName = '--item-top-'+ Date.now() // CREATE NEW PROPERTY FOR EACH ITEM
         mainContainer.style.setProperty(propertyName, "0") //SET PROPERTY POSITION START AT TOP 0
@@ -580,7 +583,25 @@ function applyEffect(item) {
                 clearTimeout(speedTimeout)
             }, item.time)
             break;
+        case 'coin':
+            balanceCoin += 2
+            break;
         default:
             break;
     }
 }
+
+buyItem.forEach(btn => {
+    btn.addEventListener('click', () => {
+        let itemBuy = btn.getAttribute('item')
+        let price = btn.getAttribute('coin')
+
+        if(balanceCoin >= price) {
+            balanceCoin -= price
+            document.querySelector('.balance').textContent = balanceCoin //BALANCE IN STORE
+            document.querySelector('#balance').textContent = balanceCoin //BALANCE AT STATISTIC
+        } else {
+            alert('Not enough coin!')
+        }
+    })
+})

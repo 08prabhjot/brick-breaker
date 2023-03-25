@@ -520,9 +520,9 @@ body {
     height: 100vh;
     position: relative;
 
-    // &.hide {
-    //     display: none;
-    // }
+    &.hide {
+        display: none;
+    }
 
     .modal-body {
         width: 700px;
