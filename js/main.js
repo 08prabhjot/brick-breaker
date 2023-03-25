@@ -64,7 +64,7 @@ const levelList = [ //DEFINE LEVELS IN GAME
     {brick: 4, brick_2: 8, brick_3: 10},
 ]
 let speed = 1
-let balanceCoin = 0
+let balanceCoin = 10
 
 startGameBtn.addEventListener('click', function() {
     startModal.classList.remove('active')
@@ -335,6 +335,7 @@ function checkWinning() {
         notifyModal.classList.remove('hide')
         notifyModal.querySelector('.score').textContent = score
         notifyModal.querySelector('.total-score').textContent = totalScore
+        checkClearBuyItems() //CLEAR EFFECT ITEM BUY
         let dropItem = document.querySelectorAll('.drop-item')
         if(dropItem) {
             //REMOVE ALL DROP ITEM WHEN END LEVEL
@@ -355,6 +356,7 @@ function checkStatus(type) {
         notifyModal.querySelector('.title').textContent = "YOU LOSE"
         notifyModal.querySelector('.score').textContent = score
         notifyModal.querySelector('.total-score').textContent = totalScore
+        checkClearBuyItems() //CLEAR EFFECT ITEM BUY
         gameRunning = 0
         currentLevel = 0
         let dropItem = document.querySelectorAll('.drop-item')
@@ -605,6 +607,8 @@ openStore.addEventListener('click', () => {
     notifyModal.classList.add('hide')
 })
 
+
+let listBuyItems = []
 buyItem.forEach(btn => {
     btn.addEventListener('click', () => {
         let itemBuy = btn.getAttribute('item')
@@ -614,8 +618,44 @@ buyItem.forEach(btn => {
             balanceCoin -= price
             document.querySelector('.balance').textContent = 'Balance: ' + balanceCoin //BALANCE IN STORE
             document.querySelector('#balance').textContent = balanceCoin //BALANCE AT STATISTIC
+
+            switch (itemBuy) {
+                case 'point':
+                    listBuyItems.push('point')
+                    scoreEach = 200
+                    break;
+                case 'increase_width':
+                    pad.classList.add('increase')
+                    listBuyItems.push('increase')
+                    break;
+                case 'heart':
+                    startLives += 1
+                    lives.textContent = startLives
+                    break;
+                case 'supper_ball':
+                    ball.classList.add('super')
+                    listBuyItems.push('ball')
+                    break;
+                default:
+                    break;
+            }
         } else {
             alert('Not enough coin!')
         }
     })
 })
+
+function checkClearBuyItems() {
+    if(listBuyItems.length) {
+        listBuyItems.forEach(item => {
+            if(item == 'point') {
+                scoreEach = 100
+            } else if(item == 'ball') {
+                ball.classList.remove('super')
+            } else {
+                pad.classList.remove('increase')
+            }
+        })
+        listBuyItems = []
+    }
+}
