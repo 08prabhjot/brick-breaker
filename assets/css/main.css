@@ -185,6 +185,12 @@ body {
   bottom: 3.5rem;
   left: calc(var(--pad-left) * 1px);
 }
+.pad.increase {
+  width: 210px;
+}
+.pad.reduce {
+  width: 100px;
+}
 
 .ball {
   position: absolute;

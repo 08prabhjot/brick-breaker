@@ -192,6 +192,12 @@ body {
     border-radius: 1000px;
     bottom: 3.5rem;
     left: calc(var(--pad-left) * 1px);
+    &.increase {
+        width: 210px;
+    }
+    &.reduce {
+        width: 100px;
+    }
 }
 
 .ball {
