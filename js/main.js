@@ -246,6 +246,7 @@ const onCollisionWithBrick = (ball, brick, collision) => {
         brick.classList.remove(brickClassList[0]) //REMOVE OLD LEVEL
     } else {
         brick.classList.add('broken')
+        randomItems()
     }
     checkStatus('win')
 }
@@ -453,18 +454,32 @@ btnSelectPad.forEach(btn => {
     })
 })
 
-let itemTop = 0;
-let dropItemInterval = setInterval(() => {
-    let item = document.querySelector('.drop-item')
-    itemTop += 1
-    mainContainer.style.setProperty("--item-top", itemTop.toString())
-   
-    if(getCollisionBetween(item, pad)) { // CHECK IF GET ITEM SUCCESSFULY
-        item.remove()
-        clearInterval(dropItemInterval)
-    }
-}, 5)
+function randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min
+}
 
-let randomDropItems = setInterval(() => {
-    
-}, 10)
+function randomItems() {
+    let number = randomNumber(1,5)
+    if(number) {
+        let item = document.createElement('div')
+        item.classList.add('drop-item')
+
+        let position = randomNumber(1,100) //RANDOM POSITION TO START DROP ITEM
+        let propertyName = '--item-top-'+ Date.now() // CREATE NEW PROPERTY FOR EACH ITEM
+        mainContainer.style.setProperty(propertyName, "0") //SET PROPERTY POSITION START AT TOP 0
+        item.style.top = `calc(var(${propertyName}) * 1px)` //APPLY POSITION TO ITEM
+        item.style.left = position + '%' //SET POSITION TO ITEM
+        mainContainer.append(item) //APPEND ITEM TO MAIN SCREEN
+
+        let itemTop = 0;
+        let dropItemInterval = setInterval(() => {
+            itemTop += 0.5
+            mainContainer.style.setProperty(propertyName, itemTop.toString()) //INCREASE VALUE OF TOP PROPERTY
+           
+            if(getCollisionBetween(item, pad) || (itemTop > mainContainer.offsetHeight - item.offsetWidth - 1)) { // CHECK IF GET ITEM SUCCESSFULY OR DROP OUT RANGE
+                item.remove() //REMOVE ITEM
+                clearInterval(dropItemInterval)
+            }
+        }, 5)
+    }
+}

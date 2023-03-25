@@ -12,7 +12,6 @@
   --pad-left: 0;
   --power-up-left: 0;
   --power-up-top: 0;
-  --item-top: 0;
 }
 
 body {
@@ -146,16 +145,15 @@ body {
   justify-content: space-between;
 }
 #gameBoard .drop-item {
-  width: 40px;
-  height: 40px;
+  width: 20px;
+  height: 20px;
   background-image: url("../../img/increase_width.png");
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   background-color: rgb(255, 255, 255);
   border-radius: 100%;
   background-position: center;
   position: absolute;
-  top: calc(var(--item-top) * 1px);
 }
 
 .bricks {
@@ -234,6 +232,10 @@ body {
 
 .statistic img, span {
   vertical-align: middle;
+}
+
+#gameBoard.hide {
+  display: none;
 }
 
 .intro {
