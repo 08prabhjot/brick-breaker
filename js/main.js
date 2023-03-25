@@ -16,8 +16,7 @@ var lives = document.getElementById('lives')
 var preBtn = document.querySelector('.control .btn-prev')
 var nextBtn = document.querySelector('.control .btn-next')
 var skipBtn = document.querySelector('.skip .btn-skip')
-var notifyModal = document.querySelector('.modal-notify')
-var btnRestartLevel = notifyModal.querySelector('.again') 
+var notifyModal = document.querySelector('.modal-notify') 
 var btnEnterName = document.querySelector('.enter-name')
 var topScoreBoard = document.querySelector('.top-score')
 var closeScoreBoard = document.querySelector('.btn-close-score')
@@ -28,6 +27,9 @@ var btnSelectBall = document.querySelectorAll('.select-ball')
 var btnSelectPad = document.querySelectorAll('.select-pad')
 var btnRestartGame = notifyModal.querySelector('.restart') 
 var buyItem = document.querySelectorAll('.buy-item')
+var openStore = notifyModal.querySelector('.store')
+var modalStore = document.querySelector('.modal-store')
+var btnRestartPlayAgain = modalStore.querySelector('.play-again')
 
 // CONFIG VALUE
 let gameRunning = 0;
@@ -367,6 +369,7 @@ function checkStatus(type) {
 
 function restartLevel(level = 1) { //DEFAULT RESTART TO FIRST LEVEL
     notifyModal.querySelector('.modal-body').classList.remove('lose')
+    modalStore.classList.add('hide')
     totalScore -= score
     if(totalScore <=0) totalScore = 0
     score = 0
@@ -391,8 +394,11 @@ function nextLevelLevel(level = 1) {
     lives.textContent = startLives
 }
 
-btnRestartLevel.addEventListener('click', function() {
-    restartLevel(currentLevel)
+btnRestartPlayAgain.addEventListener('click', function() {
+    score = 0
+    startLives = 2
+    totalScore = 0
+    restartLevel(1)
 })
 
 btnRestartGame.addEventListener('click', function() {
@@ -585,11 +591,17 @@ function applyEffect(item) {
             break;
         case 'coin':
             balanceCoin += 2
+            document.querySelector('#balance').textContent = 'Balance: ' + balanceCoin //BALANCE AT STATISTIC
             break;
         default:
             break;
     }
 }
+openStore.addEventListener('click', () => {
+    modalStore.querySelector('.balance').textContent = 'Balance: ' + balanceCoin //BALANCE IN STORE
+    modalStore.classList.remove('hide')
+    notifyModal.classList.add('hide')
+})
 
 buyItem.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -598,7 +610,7 @@ buyItem.forEach(btn => {
 
         if(balanceCoin >= price) {
             balanceCoin -= price
-            document.querySelector('.balance').textContent = balanceCoin //BALANCE IN STORE
+            document.querySelector('.balance').textContent = 'Balance: ' + balanceCoin //BALANCE IN STORE
             document.querySelector('#balance').textContent = balanceCoin //BALANCE AT STATISTIC
         } else {
             alert('Not enough coin!')
