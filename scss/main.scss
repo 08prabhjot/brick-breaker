@@ -57,7 +57,7 @@ body {
         left: 50%;
         text-align: center;
         transform: translateX(-50%);
-        background-color: gray;
+        background-color: rgb(94, 93, 93, 0.4);
         h4 {
             text-align: center;
             color: white;
@@ -108,13 +108,13 @@ body {
 }
 
 .play-text, .top-score-text {
-    color: #78f806;
+    color: white;
     // text-shadow: 0 0 20px #78f806;
 }
 
 .play-text:hover, .top-score-text:hover {
     font-size: 4.5rem;
-    color: #91fb34;
+    color: white;
 }
 
 .modal-content {
@@ -129,7 +129,7 @@ body {
 }
 
 .modal-c1 {
-    background-image: url("../../img/1203.jpg"); //BACKGROUND GET FROM FREEPIK: https://www.freepik.com/free-vector/landscape-space-settlement_24061536.htm
+    background-image: url("../../img/111.jpg"); //BACKGROUND GET FROM FREEPIK: https://www.freepik.com/free-vector/landscape-space-settlement_24061536.htm
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

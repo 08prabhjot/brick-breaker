@@ -56,7 +56,7 @@ body {
   left: 50%;
   text-align: center;
   transform: translateX(-50%);
-  background-color: gray;
+  background-color: rgba(94, 93, 93, 0.4);
 }
 .modal .optional-ball h4 {
   text-align: center;
@@ -102,12 +102,12 @@ body {
 }
 
 .play-text, .top-score-text {
-  color: #78f806;
+  color: white;
 }
 
 .play-text:hover, .top-score-text:hover {
   font-size: 4.5rem;
-  color: #91fb34;
+  color: white;
 }
 
 .modal-content {
@@ -122,7 +122,7 @@ body {
 }
 
 .modal-c1 {
-  background-image: url("../../img/1203.jpg");
+  background-image: url("../../img/111.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
