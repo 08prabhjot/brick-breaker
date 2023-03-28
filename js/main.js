@@ -402,6 +402,7 @@ btnRestartPlayAgain.addEventListener('click', function() {
     startLives = 2
     totalScore = 0
     currentLevel = currentLevel ? currentLevel + 1 : 1
+    notifyModal.querySelector('.modal-body').classList.remove('lose')
     restartLevel(currentLevel)
 })
 
