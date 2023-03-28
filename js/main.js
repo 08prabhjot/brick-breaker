@@ -334,6 +334,7 @@ function checkWinning() {
     if(!brick) {
         notifyModal.classList.remove('hide')
         notifyModal.querySelector('.score').textContent = score
+        notifyModal.querySelector('.title').textContent = "YOU WIN"
         notifyModal.querySelector('.total-score').textContent = totalScore
         checkClearBuyItems() //CLEAR EFFECT ITEM BUY
         let dropItem = document.querySelectorAll('.drop-item')
