@@ -126,6 +126,31 @@ body {
     width: 1000px;
     height: 550px;
     box-shadow: 0 0 50px #e17c2e;
+
+    .store {
+        position: absolute;
+        bottom: 5%;    
+        right: 0;
+        text-align: center;
+        transform: translateX(-50%);
+        background-color: rgb(94, 93, 93, 0.4);
+        border: 5px solid #74EFFE;
+        background-color: #0099E1;
+        border-radius: 100%;
+        padding: 10px;
+        margin: 0 .5rem;
+        max-height: 60px;
+        cursor: pointer;
+        opacity: 0.7;
+        img {
+            width: 30px;
+            height: 30px;
+        }
+        &:hover {
+            box-shadow: 0 0 20px rgb(5, 114, 209);
+            opacity: 1;
+        }
+    }
 }
 
 .modal-c1 {
@@ -558,6 +583,12 @@ body {
             justify-content: space-between;
             align-items: flex-end;
             margin: 0 1rem;
+            flex-wrap: wrap;
+
+            .item {
+                width: 50%;
+                padding: 1rem;
+            }
 
             .buy-item {
                 padding: 5px;

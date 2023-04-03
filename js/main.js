@@ -27,7 +27,7 @@ var btnSelectBall = document.querySelectorAll('.select-ball')
 var btnSelectPad = document.querySelectorAll('.select-pad')
 var btnRestartGame = notifyModal.querySelector('.restart') 
 var buyItem = document.querySelectorAll('.buy-item')
-var openStore = notifyModal.querySelector('.store')
+var openStore = document.querySelectorAll('.store')
 var modalStore = document.querySelector('.modal-store')
 var btnRestartPlayAgain = modalStore.querySelector('.play-again')
 
@@ -604,10 +604,13 @@ function applyEffect(item) {
             break;
     }
 }
-openStore.addEventListener('click', () => {
-    modalStore.querySelector('.balance').textContent = 'Balance: ' + balanceCoin //BALANCE IN STORE
-    modalStore.classList.remove('hide')
-    notifyModal.classList.add('hide')
+
+openStore.forEach(open => {
+    open.addEventListener('click', () => {
+        modalStore.querySelector('.balance').textContent = 'Balance: ' + balanceCoin //BALANCE IN STORE
+        modalStore.classList.remove('hide')
+        notifyModal.classList.add('hide')
+    })
 })
 
 
