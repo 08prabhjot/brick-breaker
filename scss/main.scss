@@ -528,14 +528,16 @@ body {
         .list-score {
             margin-top: 1rem;
             max-height: 350px;
+            overflow: hidden;
             .score {
                 display: flex;
                 justify-content: space-between;
                 color: black;
                 text-transform: uppercase;
                 padding: 10px 0;
+                font-weight: bold;
+                color: #FF7C25
             }
-            overflow: hidden;
             overflow-y: scroll;
         }
     }
