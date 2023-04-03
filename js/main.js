@@ -479,7 +479,7 @@ btnSelectBall.forEach(btn => {
         })
         let ball = btn.getAttribute('ball')
         btn.classList.add('active') //SET ACTIVE NEW BALL
-        document.querySelector('.ball').style.backgroundImage = `url('../../img/${ball}')` // CHANGE BACKGROUND OF BALL
+        document.querySelector('.ball').style.backgroundImage = `url('../img/${ball}')` // CHANGE BACKGROUND OF BALL
     })
 })
 
@@ -490,7 +490,7 @@ btnSelectPad.forEach(btn => {
         })
         let ball = btn.getAttribute('pad')
         btn.classList.add('active') //SET ACTIVE NEW PAD
-        document.querySelector('.pad').style.backgroundImage = `url('../../img/${ball}')` // CHANGE BACKGROUND OF BALL
+        document.querySelector('.pad').style.backgroundImage = `url('../img/${ball}')` // CHANGE BACKGROUND OF BALL
     })
 })
 
@@ -523,7 +523,7 @@ function randomItems() {
         mainContainer.style.setProperty(propertyName, "0") //SET PROPERTY POSITION START AT TOP 0
         item.style.top = `calc(var(${propertyName}) * 1px)` //APPLY POSITION TO ITEM
         item.style.left = position + '%' //SET POSITION TO ITEM
-        item.style.backgroundImage = `url(../../img/${getItem.image})`
+        item.style.backgroundImage = `url(../img/${getItem.image})`
         mainContainer.append(item) //APPEND ITEM TO MAIN SCREEN
 
         let itemTop = 0;
