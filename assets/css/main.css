@@ -228,6 +228,9 @@ body {
   bottom: 0;
   padding: 2rem;
 }
+.statistic #balance {
+  margin-left: 50px;
+}
 
 .statistic img, span {
   vertical-align: middle;
